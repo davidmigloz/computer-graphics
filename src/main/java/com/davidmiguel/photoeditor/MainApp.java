@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 
+import javax.imageio.ImageIO;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -11,6 +13,7 @@ import com.davidmiguel.photoeditor.view.EditorController;
 import com.davidmiguel.photoeditor.view.RootLayoutController;
 
 import javafx.application.Application;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -28,6 +31,7 @@ public class MainApp extends Application {
 	private BorderPane rootLayout;
 	private EditorController editorController;
 
+	private File file;
 	private Image image;
 
 	public MainApp() {
@@ -78,25 +82,42 @@ public class MainApp extends Application {
 			editorController = loader.getController();
 			editorController.setMainApp(this);
 		} catch (IOException e) {
-			e.printStackTrace();
+			logger.error(null, e);
+			System.exit(1);
 		}
 	}
 
 	public void loadImage(File file) {
 		try {
 			String imageURL = file.toURI().toURL().toString();
-			image = new Image(imageURL);
+			this.image = new Image(imageURL);
+			this.file = file;
 			editorController.updateImage(image);
+			
 		} catch (MalformedURLException e) {
+			logger.error(null, e);
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("Error");
-			alert.setHeaderText("Could not load data");
-			alert.setContentText(
-					"Could not load data from file:\n" + file.getPath());
+			alert.setHeaderText("Could not open the image");
+			alert.setContentText("Could not open the image from the file:\n"
+					+ file.getPath());
 			alert.showAndWait();
 		}
 	}
 
+	public void saveImage(File file) {
+		try {
+			ImageIO.write(SwingFXUtils.fromFXImage(image, null), "png", file);
+		} catch (IOException e) {
+			logger.error(null, e);
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Error");
+			alert.setHeaderText("Could not save the image");
+			alert.setContentText(
+					"Could not save the image to the file:\n" + file.getPath());
+			alert.showAndWait();
+		}
+	}
 	/* ********************************************************************* */
 	/* Getters / Setters */
 	/* ********************************************************************* */
@@ -112,7 +133,11 @@ public class MainApp extends Application {
 	public void setImage(Image image) {
 		this.image = image;
 	}
-
+	
+	public File getFile() {
+		return file;
+	}
+	
 	/* ********************************************************************* */
 	/* Main */
 	/* ********************************************************************* */

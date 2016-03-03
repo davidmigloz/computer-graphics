@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.davidmiguel.photoeditor.view.EditorController;
+import com.davidmiguel.photoeditor.view.FunctionFiltersController;
 import com.davidmiguel.photoeditor.view.RootLayoutController;
 
 import javafx.application.Application;
@@ -19,7 +20,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.SplitPane;
+import javafx.scene.control.Tab;
 import javafx.scene.image.Image;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
@@ -46,6 +49,7 @@ public class MainApp extends Application {
 		this.primaryStage.setTitle("PhotoEditor");
 		configureStage();
 		configureEditor();
+		configureFunctionFilters();
 		this.primaryStage.show();
 	}
 
@@ -68,19 +72,40 @@ public class MainApp extends Application {
 		}
 	}
 
-	public void configureEditor() {
+	private void configureEditor() {
 		try {
 			// Load editor layout from fxml file
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(MainApp.class.getResource("view/Editor.fxml"));
-			SplitPane editor = (SplitPane) loader.load();
-
-			// Set person overview into the center of root layout.
-			rootLayout.setCenter(editor);
-
-			// Give the controller access to the main app.
+			SplitPane editorLayout = (SplitPane) loader.load();
+			// Set in root layout
+			rootLayout.setCenter(editorLayout);
+			// Give the controller access to the main app
 			editorController = loader.getController();
 			editorController.setMainApp(this);
+		} catch (IOException e) {
+			logger.error(null, e);
+			System.exit(1);
+		}
+	}
+
+	private void configureFunctionFilters() {
+		try {
+			// Load function filters layout from fxml file
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(
+					MainApp.class.getResource("view/FunctionFilters.fxml"));
+			AnchorPane functionFilters = (AnchorPane) loader.load();
+			// Set in editor layout
+			for (Tab tab : editorController.getFiltersTabs().getTabs()) {
+				if (tab.getId().equals("function")) {
+					tab.setContent(functionFilters);
+				}
+			}
+			// Give the controller access to the main app
+			FunctionFiltersController functionFiltersController = loader
+					.getController();
+			functionFiltersController.setMainApp(this);
 		} catch (IOException e) {
 			logger.error(null, e);
 			System.exit(1);
@@ -93,7 +118,7 @@ public class MainApp extends Application {
 			this.image = new Image(imageURL);
 			this.file = file;
 			editorController.updateImage(image);
-			
+
 		} catch (MalformedURLException e) {
 			logger.error(null, e);
 			Alert alert = new Alert(AlertType.ERROR);
@@ -133,11 +158,11 @@ public class MainApp extends Application {
 	public void setImage(Image image) {
 		this.image = image;
 	}
-	
+
 	public File getFile() {
 		return file;
 	}
-	
+
 	/* ********************************************************************* */
 	/* Main */
 	/* ********************************************************************* */

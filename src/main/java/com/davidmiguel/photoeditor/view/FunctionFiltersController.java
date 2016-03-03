@@ -1,40 +1,47 @@
 package com.davidmiguel.photoeditor.view;
 
+import java.io.File;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.davidmiguel.photoeditor.MainApp;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.TabPane;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
 
-public class EditorController {
-	
+public class FunctionFiltersController {
+
 	private final Logger logger = LoggerFactory.getLogger(getClass().getName());
 	
 	private MainApp mainApp;
 	
 	@FXML
-	private ImageView imageView;
-	@FXML
-	private TabPane filtersTabs;
-
-	@FXML
 	private void initialize() {
 		logger.info("initialize() called");
 	}
-
+	
 	public void setMainApp(MainApp mainApp) {
 		this.mainApp = mainApp;
 	}
+	
+	@FXML
+	private void handleBrightnessUpX1() {
 
-	public void updateImage(Image image) {
-		imageView.setImage(this.mainApp.getImage());
 	}
+	
+	@FXML
+	private void handleBrightnessDownX1() {
 
-	public TabPane getFiltersTabs() {
-		return filtersTabs;
+	}
+	
+	@FXML
+	private void handleBrightnessUpX2() {
+
+	}
+	
+	@FXML
+	private void handleBrightnessDownX2() {
+
 	}
 }

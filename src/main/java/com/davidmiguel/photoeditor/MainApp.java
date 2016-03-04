@@ -157,6 +157,7 @@ public class MainApp extends Application {
 
 	public void setImage(Image image) {
 		this.image = image;
+		this.editorController.updateImage(image);
 	}
 
 	public File getFile() {

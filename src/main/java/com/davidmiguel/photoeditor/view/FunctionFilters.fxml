@@ -9,8 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="223.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="223.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.davidmiguel.photoeditor.view.FunctionFiltersController">
    <children>
       <GridPane alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0">
          <columnConstraints>
@@ -30,22 +29,22 @@
             <Label alignment="CENTER_RIGHT" prefHeight="28.0" prefWidth="68.0" text="Inversion:" GridPane.rowIndex="3" />
             <HBox alignment="CENTER" layoutX="74.0" layoutY="42.0" GridPane.columnIndex="1">
                <children>
-                  <Button alignment="CENTER" contentDisplay="CENTER" maxHeight="25.0" maxWidth="33.0" minHeight="25.0" minWidth="33.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="33.0" text="--">
+                  <Button alignment="CENTER" contentDisplay="CENTER" maxHeight="25.0" maxWidth="33.0" minHeight="25.0" minWidth="33.0" mnemonicParsing="false" onAction="#handleBrightnessDownX2" prefHeight="25.0" prefWidth="33.0" text="--">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
                   </Button>
-                  <Button alignment="CENTER" contentDisplay="CENTER" maxHeight="25.0" maxWidth="33.0" minHeight="25.0" minWidth="33.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="33.0" text="-">
+                  <Button alignment="CENTER" contentDisplay="CENTER" maxHeight="25.0" maxWidth="33.0" minHeight="25.0" minWidth="33.0" mnemonicParsing="false" onAction="#handleBrightnessDownX1" prefHeight="25.0" prefWidth="33.0" text="-">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
                   </Button>
-                  <Button alignment="CENTER" contentDisplay="CENTER" maxHeight="25.0" maxWidth="33.0" minHeight="25.0" minWidth="33.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="33.0" text="+">
+                  <Button alignment="CENTER" contentDisplay="CENTER" maxHeight="25.0" maxWidth="33.0" minHeight="25.0" minWidth="33.0" mnemonicParsing="false" onAction="#handleBrightnessUpX1" prefHeight="25.0" prefWidth="33.0" text="+">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
                   </Button>
-                  <Button alignment="CENTER" contentDisplay="CENTER" maxHeight="25.0" maxWidth="33.0" minHeight="25.0" minWidth="33.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="33.0" text="++">
+                  <Button alignment="CENTER" contentDisplay="CENTER" maxHeight="25.0" maxWidth="33.0" minHeight="25.0" minWidth="33.0" mnemonicParsing="false" onAction="#handleBrightnessUpX2" prefHeight="25.0" prefWidth="33.0" text="++">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>

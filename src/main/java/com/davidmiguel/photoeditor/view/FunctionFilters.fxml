@@ -101,7 +101,7 @@
             </HBox>
             <HBox alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <children>
-                  <Button alignment="CENTER" contentDisplay="CENTER" maxHeight="25.0" maxWidth="60.0" minHeight="25.0" minWidth="60.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="60.0" text="Invert" />
+                  <Button alignment="CENTER" contentDisplay="CENTER" maxHeight="25.0" maxWidth="60.0" minHeight="25.0" minWidth="60.0" mnemonicParsing="false" onAction="#handleInversion" prefHeight="25.0" prefWidth="60.0" text="Invert" />
                </children>
             </HBox>
          </children>

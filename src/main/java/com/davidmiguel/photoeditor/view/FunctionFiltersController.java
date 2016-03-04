@@ -7,6 +7,7 @@ import com.davidmiguel.photoeditor.MainApp;
 import com.davidmiguel.photoeditor.filters.BrightnessFilter;
 import com.davidmiguel.photoeditor.filters.ContrastFilter;
 import com.davidmiguel.photoeditor.filters.Filter;
+import com.davidmiguel.photoeditor.filters.InversionFilter;
 
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
@@ -102,6 +103,16 @@ public class FunctionFiltersController {
 			return;
 		}
 		Filter filter = new ContrastFilter(0.5);
+		Image result = filter.apply(this.mainApp.getImage());
+		this.mainApp.setImage(result);
+	}
+	
+	@FXML
+	private void handleInversion() {
+		if(this.mainApp.getImage() == null){
+			return;
+		}
+		Filter filter = new InversionFilter();
 		Image result = filter.apply(this.mainApp.getImage());
 		this.mainApp.setImage(result);
 	}

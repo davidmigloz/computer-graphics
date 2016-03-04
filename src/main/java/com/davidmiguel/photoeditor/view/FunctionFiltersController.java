@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 
 import com.davidmiguel.photoeditor.MainApp;
 import com.davidmiguel.photoeditor.filters.BrightnessFilter;
+import com.davidmiguel.photoeditor.filters.ContrastFilter;
 import com.davidmiguel.photoeditor.filters.Filter;
 
 import javafx.fxml.FXML;
@@ -61,6 +62,46 @@ public class FunctionFiltersController {
 			return;
 		}
 		Filter filter = new BrightnessFilter(-30);
+		Image result = filter.apply(this.mainApp.getImage());
+		this.mainApp.setImage(result);
+	}
+	
+	@FXML
+	private void handleConstrastUpX1() {
+		if(this.mainApp.getImage() == null){
+			return;
+		}
+		Filter filter = new ContrastFilter(1.1);
+		Image result = filter.apply(this.mainApp.getImage());
+		this.mainApp.setImage(result);
+	}
+	
+	@FXML
+	private void handleConstrastDownX1() {
+		if(this.mainApp.getImage() == null){
+			return;
+		}
+		Filter filter = new ContrastFilter(0.9);
+		Image result = filter.apply(this.mainApp.getImage());
+		this.mainApp.setImage(result);
+	}
+	
+	@FXML
+	private void handleConstrastUpX2() {
+		if(this.mainApp.getImage() == null){
+			return;
+		}
+		Filter filter = new ContrastFilter(2);
+		Image result = filter.apply(this.mainApp.getImage());
+		this.mainApp.setImage(result);
+	}
+	
+	@FXML
+	private void handleConstrastDownX2() {
+		if(this.mainApp.getImage() == null){
+			return;
+		}
+		Filter filter = new ContrastFilter(0.5);
 		Image result = filter.apply(this.mainApp.getImage());
 		this.mainApp.setImage(result);
 	}

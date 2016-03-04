@@ -7,6 +7,7 @@ import com.davidmiguel.photoeditor.MainApp;
 import com.davidmiguel.photoeditor.filters.BrightnessFilter;
 import com.davidmiguel.photoeditor.filters.ContrastFilter;
 import com.davidmiguel.photoeditor.filters.Filter;
+import com.davidmiguel.photoeditor.filters.GammaFilter;
 import com.davidmiguel.photoeditor.filters.InversionFilter;
 
 import javafx.fxml.FXML;
@@ -113,6 +114,46 @@ public class FunctionFiltersController {
 			return;
 		}
 		Filter filter = new InversionFilter();
+		Image result = filter.apply(this.mainApp.getImage());
+		this.mainApp.setImage(result);
+	}
+	
+	@FXML
+	private void handleGammaUpX1() {
+		if(this.mainApp.getImage() == null){
+			return;
+		}
+		Filter filter = new GammaFilter(1.05);
+		Image result = filter.apply(this.mainApp.getImage());
+		this.mainApp.setImage(result);
+	}
+	
+	@FXML
+	private void handleGammaDownX1() {
+		if(this.mainApp.getImage() == null){
+			return;
+		}
+		Filter filter = new GammaFilter(0.95);
+		Image result = filter.apply(this.mainApp.getImage());
+		this.mainApp.setImage(result);
+	}
+	
+	@FXML
+	private void handleGammaUpX2() {
+		if(this.mainApp.getImage() == null){
+			return;
+		}
+		Filter filter = new GammaFilter(1.2);
+		Image result = filter.apply(this.mainApp.getImage());
+		this.mainApp.setImage(result);
+	}
+	
+	@FXML
+	private void handleGammaDownX2() {
+		if(this.mainApp.getImage() == null){
+			return;
+		}
+		Filter filter = new GammaFilter(0.8);
 		Image result = filter.apply(this.mainApp.getImage());
 		this.mainApp.setImage(result);
 	}

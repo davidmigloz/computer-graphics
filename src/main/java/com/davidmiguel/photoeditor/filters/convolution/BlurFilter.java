@@ -15,7 +15,9 @@ public class BlurFilter extends ConvolutionFilter {
 
 	private final Logger logger = LoggerFactory.getLogger(getClass().getName());
 
-	private final static double OFFSET = 1;
+	private final static double OFFSET = 0;
+	private final static double DIVISOR3 = 9;
+	private final static double DIVISOR5 = 25;
 	private final static double[][] KERNEL3 = {{ 1, 1, 1 }, 
 											   { 1, 1, 1 },
 											   { 1, 1, 1 }};
@@ -27,7 +29,7 @@ public class BlurFilter extends ConvolutionFilter {
 
 	public BlurFilter(int value) {
 		super(value < 5 ? KERNEL3 : KERNEL5,
-			  value < 5 ? Math.pow(KERNEL3.length, 2) : Math.pow(KERNEL5.length, 2),
+			  value < 5 ? DIVISOR3 : DIVISOR5,
 			  OFFSET);
 	}
 

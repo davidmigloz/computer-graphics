@@ -45,12 +45,12 @@
             </HBox>
             <HBox alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <children>
-                  <Button alignment="CENTER" contentDisplay="CENTER" maxHeight="25.0" maxWidth="33.0" minHeight="25.0" minWidth="33.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="33.0" text="+">
+                  <Button alignment="CENTER" contentDisplay="CENTER" maxHeight="25.0" maxWidth="33.0" minHeight="25.0" minWidth="33.0" mnemonicParsing="false" onAction="#handleGaussianX1" prefHeight="25.0" prefWidth="33.0" text="+">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
                   </Button>
-                  <Button alignment="CENTER" contentDisplay="CENTER" maxHeight="25.0" maxWidth="33.0" minHeight="25.0" minWidth="33.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="33.0" text="++">
+                  <Button alignment="CENTER" contentDisplay="CENTER" maxHeight="25.0" maxWidth="33.0" minHeight="25.0" minWidth="33.0" mnemonicParsing="false" onAction="#handleGaussianX2" prefHeight="25.0" prefWidth="33.0" text="++">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>

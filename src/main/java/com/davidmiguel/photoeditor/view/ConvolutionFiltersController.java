@@ -6,7 +6,9 @@ import org.slf4j.LoggerFactory;
 import com.davidmiguel.photoeditor.MainApp;
 import com.davidmiguel.photoeditor.filters.Filter;
 import com.davidmiguel.photoeditor.filters.convolution.BlurFilter;
+import com.davidmiguel.photoeditor.filters.convolution.EdgeFilter;
 import com.davidmiguel.photoeditor.filters.convolution.GaussianFilter;
+import com.davidmiguel.photoeditor.filters.convolution.SharpenFilter;
 
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
@@ -62,6 +64,56 @@ public class ConvolutionFiltersController {
 			return;
 		}
 		Filter filter = new GaussianFilter(5);
+		Image result = filter.apply(this.mainApp.getImage());
+		this.mainApp.setImage(result);
+	}
+	
+	@FXML
+	private void handleSharpenX1() {
+		if(this.mainApp.getImage() == null){
+			return;
+		}
+		Filter filter = new SharpenFilter(3);
+		Image result = filter.apply(this.mainApp.getImage());
+		this.mainApp.setImage(result);
+	}
+	
+	@FXML
+	private void handleSharpenX2() {
+		if(this.mainApp.getImage() == null){
+			return;
+		}
+		Filter filter = new SharpenFilter(5);
+		Image result = filter.apply(this.mainApp.getImage());
+		this.mainApp.setImage(result);
+	}
+	
+	@FXML
+	private void handleEdgeV() {
+		if(this.mainApp.getImage() == null){
+			return;
+		}
+		Filter filter = new EdgeFilter('V');
+		Image result = filter.apply(this.mainApp.getImage());
+		this.mainApp.setImage(result);
+	}
+	
+	@FXML
+	private void handleEdgeH() {
+		if(this.mainApp.getImage() == null){
+			return;
+		}
+		Filter filter = new EdgeFilter('H');
+		Image result = filter.apply(this.mainApp.getImage());
+		this.mainApp.setImage(result);
+	}
+	
+	@FXML
+	private void handleEdgeD() {
+		if(this.mainApp.getImage() == null){
+			return;
+		}
+		Filter filter = new EdgeFilter('D');
 		Image result = filter.apply(this.mainApp.getImage());
 		this.mainApp.setImage(result);
 	}

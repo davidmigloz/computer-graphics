@@ -7,6 +7,7 @@ import com.davidmiguel.photoeditor.MainApp;
 import com.davidmiguel.photoeditor.filters.Filter;
 import com.davidmiguel.photoeditor.filters.convolution.BlurFilter;
 import com.davidmiguel.photoeditor.filters.convolution.EdgeFilter;
+import com.davidmiguel.photoeditor.filters.convolution.EmbossFilter;
 import com.davidmiguel.photoeditor.filters.convolution.GaussianFilter;
 import com.davidmiguel.photoeditor.filters.convolution.SharpenFilter;
 
@@ -114,6 +115,46 @@ public class ConvolutionFiltersController {
 			return;
 		}
 		Filter filter = new EdgeFilter('D');
+		Image result = filter.apply(this.mainApp.getImage());
+		this.mainApp.setImage(result);
+	}
+	
+	@FXML
+	private void handleEmbossN() {
+		if(this.mainApp.getImage() == null){
+			return;
+		}
+		Filter filter = new EmbossFilter('N');
+		Image result = filter.apply(this.mainApp.getImage());
+		this.mainApp.setImage(result);
+	}
+	
+	@FXML
+	private void handleEmbossE() {
+		if(this.mainApp.getImage() == null){
+			return;
+		}
+		Filter filter = new EmbossFilter('E');
+		Image result = filter.apply(this.mainApp.getImage());
+		this.mainApp.setImage(result);
+	}
+	
+	@FXML
+	private void handleEmbossS() {
+		if(this.mainApp.getImage() == null){
+			return;
+		}
+		Filter filter = new EmbossFilter('S');
+		Image result = filter.apply(this.mainApp.getImage());
+		this.mainApp.setImage(result);
+	}
+	
+	@FXML
+	private void handleEmbossW() {
+		if(this.mainApp.getImage() == null){
+			return;
+		}
+		Filter filter = new EmbossFilter('W');
 		Image result = filter.apply(this.mainApp.getImage());
 		this.mainApp.setImage(result);
 	}

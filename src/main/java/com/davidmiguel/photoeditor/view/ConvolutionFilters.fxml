@@ -87,10 +87,10 @@
             <Label alignment="CENTER_RIGHT" text="Personalized:" GridPane.rowIndex="5" />
             <HBox alignment="CENTER" layoutX="99.0" layoutY="102.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <children>
-                  <Button alignment="CENTER" contentDisplay="CENTER" maxHeight="25.0" maxWidth="33.0" minHeight="25.0" minWidth="33.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="33.0" text="N" />
-                  <Button alignment="CENTER" contentDisplay="CENTER" maxHeight="25.0" maxWidth="33.0" minHeight="25.0" minWidth="33.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="33.0" text="E" />
-                  <Button alignment="CENTER" contentDisplay="CENTER" maxHeight="25.0" maxWidth="33.0" minHeight="25.0" minWidth="33.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="33.0" text="S" />
-                  <Button alignment="CENTER" contentDisplay="CENTER" layoutX="24.0" layoutY="13.0" maxHeight="25.0" maxWidth="33.0" minHeight="25.0" minWidth="33.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="33.0" text="W" />
+                  <Button alignment="CENTER" contentDisplay="CENTER" maxHeight="25.0" maxWidth="33.0" minHeight="25.0" minWidth="33.0" mnemonicParsing="false" onAction="#handleEmbossN" prefHeight="25.0" prefWidth="33.0" text="N" />
+                  <Button alignment="CENTER" contentDisplay="CENTER" maxHeight="25.0" maxWidth="33.0" minHeight="25.0" minWidth="33.0" mnemonicParsing="false" onAction="#handleEmbossE" prefHeight="25.0" prefWidth="33.0" text="E" />
+                  <Button alignment="CENTER" contentDisplay="CENTER" maxHeight="25.0" maxWidth="33.0" minHeight="25.0" minWidth="33.0" mnemonicParsing="false" onAction="#handleEmbossS" prefHeight="25.0" prefWidth="33.0" text="S" />
+                  <Button alignment="CENTER" contentDisplay="CENTER" layoutX="24.0" layoutY="13.0" maxHeight="25.0" maxWidth="33.0" minHeight="25.0" minWidth="33.0" mnemonicParsing="false" onAction="#handleEmbossW" prefHeight="25.0" prefWidth="33.0" text="W" />
                </children>
             </HBox>
          </children>

@@ -41,8 +41,8 @@ public class ConvolutionFilter implements Filter {
 		int newR, newG, newB, sumR, sumG, sumB;
 		double a;
 		Color newColor;
-		for (int y = 0; y < input.getHeight() - tamMidKernel; y++) {
-			for (int x = 0; x < input.getWidth() - tamMidKernel; x++) {
+		for (int y = 0; y < input.getHeight() - (kernel.length - 1); y++) {
+			for (int x = 0; x < input.getWidth() - (kernel.length - 1); x++) {
 				// Get pixel matrix
 				for (int i = 0; i < kernel.length; ++i) {
 					for (int j = 0; j < kernel.length; ++j) {
@@ -72,26 +72,30 @@ public class ConvolutionFilter implements Filter {
 				a = pixels[tamMidKernel + 1][tamMidKernel + 1].getOpacity();
 				newColor = Color.rgb(newR, newG, newB, a);
 				// Write new pixel
-				pixelWriter.setColor(x + tamMidKernel + 1, y + tamMidKernel + 1,
+				pixelWriter.setColor(x + tamMidKernel, y + tamMidKernel,
 						newColor);
 			}
 		}
 
 		// Copy borders from original image
-		for (int i = 0; i < input.getHeight(); i++) {
-			// Top border
-			pixelWriter.setColor(0, i, pixelReader.getColor(0, i));
-			// Botton border
-			pixelWriter.setColor((int) (input.getHeight() - 1), i,
-					pixelReader.getColor((int) (input.getHeight() - 1), i));
-
+		for (int i = 0; i < input.getWidth(); i++) {			
+			for (int j = 0; j < tamMidKernel; j++) {
+				// Top border
+				pixelWriter.setColor(i, j, pixelReader.getColor(i, j));
+				// Botton border
+				pixelWriter.setColor(i, (int) (input.getHeight() - 1 - j),
+						pixelReader.getColor(i, (int) (input.getHeight() - 1 - j)));
+			}
 		}
-		for (int i = 0; i < input.getWidth(); i++) {
-			// Right border
-			pixelWriter.setColor(i, (int) (input.getWidth() - 1),
-					pixelReader.getColor(i, (int) (input.getWidth() - 1)));
-			// Left border
-			pixelWriter.setColor(i, 0, pixelReader.getColor(i, 0));
+		for (int i = 0; i < input.getHeight(); i++) {
+			for (int j = 0; j < tamMidKernel; j++) {
+				// Right border
+				pixelWriter.setColor((int) (input.getWidth() - 1 - j), i,
+						pixelReader.getColor((int) (input.getWidth() - 1 - j), i));
+				
+				// Left border
+				pixelWriter.setColor(j, i, pixelReader.getColor(j, i));		
+			}	
 		}
 
 		return result;

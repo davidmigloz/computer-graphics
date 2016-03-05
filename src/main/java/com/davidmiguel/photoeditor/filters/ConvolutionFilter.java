@@ -8,6 +8,7 @@ import javafx.scene.paint.Color;
 
 /**
  * Functional filter (Blur, Gausian Blur, Sharpen, Edges, Emboss).
+ * http://pippin.gimp.org/image_processing/chap_area.html#id2559218
  */
 public class ConvolutionFilter implements Filter {
 

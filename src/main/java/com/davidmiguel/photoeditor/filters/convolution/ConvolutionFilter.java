@@ -1,4 +1,6 @@
-package com.davidmiguel.photoeditor.filters;
+package com.davidmiguel.photoeditor.filters.convolution;
+
+import com.davidmiguel.photoeditor.filters.Filter;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.PixelReader;

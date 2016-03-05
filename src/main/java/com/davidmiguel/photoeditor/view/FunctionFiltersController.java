@@ -4,11 +4,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.davidmiguel.photoeditor.MainApp;
-import com.davidmiguel.photoeditor.filters.BrightnessFilter;
-import com.davidmiguel.photoeditor.filters.ContrastFilter;
+import com.davidmiguel.photoeditor.filters.function.BrightnessFilter;
+import com.davidmiguel.photoeditor.filters.function.ContrastFilter;
 import com.davidmiguel.photoeditor.filters.Filter;
-import com.davidmiguel.photoeditor.filters.GammaFilter;
-import com.davidmiguel.photoeditor.filters.InversionFilter;
+import com.davidmiguel.photoeditor.filters.function.GammaFilter;
+import com.davidmiguel.photoeditor.filters.function.InversionFilter;
 
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;

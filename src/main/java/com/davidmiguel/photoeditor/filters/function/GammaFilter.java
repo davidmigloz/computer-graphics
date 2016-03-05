@@ -1,4 +1,4 @@
-package com.davidmiguel.photoeditor.filters;
+package com.davidmiguel.photoeditor.filters.function;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

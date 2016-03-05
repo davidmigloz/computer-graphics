@@ -1,4 +1,4 @@
-package com.davidmiguel.photoeditor.filters;
+package com.davidmiguel.photoeditor.filters.function;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -6,23 +6,21 @@ import org.slf4j.LoggerFactory;
 import javafx.scene.image.Image;
 
 /**
- * Brightness function filter. 
- * value > 0 -> increase brightness
- * value < 0 -> decrease brightness
- * http://pippin.gimp.org/image_processing/chap_point.html#id2556807
+ * Inversion function filter.
+ * http://pippin.gimp.org/image_processing/chap_point.html#id2557324
  */
-public class BrightnessFilter extends FunctionFilter {
+public class InversionFilter extends FunctionFilter {
 
 	private final Logger logger = LoggerFactory.getLogger(getClass().getName());
 
-	public BrightnessFilter(double value) {
-		super(value);
+	public InversionFilter() {
+		super(BITS - 1);
 	}
 
 	@Override
 	protected void createLookupTable(double value) {
 		for (int i = 0; i < BITS; i++) {
-			lookupTable[i] = (short) (i + value);
+			lookupTable[i] = (short) (value - i);
 			// Check value in [0, BITS)
 			if (lookupTable[i] >= BITS) {
 				lookupTable[i] = BITS - 1;
@@ -34,7 +32,7 @@ public class BrightnessFilter extends FunctionFilter {
 
 	@Override
 	public Image apply(Image input) {
-		logger.info("Apply BrightnessFilter");
+		logger.info("Apply InversionFilter");
 		return super.apply(input);
 	}
 }

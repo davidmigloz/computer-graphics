@@ -9,6 +9,7 @@ import javax.imageio.ImageIO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.davidmiguel.photoeditor.view.ConvolutionFiltersController;
 import com.davidmiguel.photoeditor.view.EditorController;
 import com.davidmiguel.photoeditor.view.FunctionFiltersController;
 import com.davidmiguel.photoeditor.view.RootLayoutController;
@@ -50,6 +51,7 @@ public class MainApp extends Application {
 		configureStage();
 		configureEditor();
 		configureFunctionFilters();
+		configureConvolutionFilters();
 		this.primaryStage.show();
 	}
 
@@ -106,6 +108,29 @@ public class MainApp extends Application {
 			FunctionFiltersController functionFiltersController = loader
 					.getController();
 			functionFiltersController.setMainApp(this);
+		} catch (IOException e) {
+			logger.error(null, e);
+			System.exit(1);
+		}
+	}
+	
+	private void configureConvolutionFilters() {
+		try {
+			// Load function filters layout from fxml file
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(
+					MainApp.class.getResource("view/ConvolutionFilters.fxml"));
+			AnchorPane convolutionFilters = (AnchorPane) loader.load();
+			// Set in editor layout
+			for (Tab tab : editorController.getFiltersTabs().getTabs()) {
+				if (tab.getId().equals("convolution")) {
+					tab.setContent(convolutionFilters);
+				}
+			}
+			// Give the controller access to the main app
+			ConvolutionFiltersController convolutionFiltersController = loader
+					.getController();
+			convolutionFiltersController.setMainApp(this);
 		} catch (IOException e) {
 			logger.error(null, e);
 			System.exit(1);

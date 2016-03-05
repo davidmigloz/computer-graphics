@@ -8,13 +8,13 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<SplitPane dividerPositions="0.77" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="990.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.davidmiguel.photoeditor.view.EditorController">
+<SplitPane dividerPositions="0.73" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="1053.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.davidmiguel.photoeditor.view.EditorController">
   <items>
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="520.0" prefWidth="750.0">
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="520.0" prefWidth="763.0">
          <children>
             <ImageView fx:id="imageView" fitHeight="478.0" fitWidth="720.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="20.0" />
          </children></AnchorPane>
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="520.0" prefWidth="220.0">
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="520.0" prefWidth="274.0">
          <children>
             <Accordion layoutX="11.0" layoutY="14.0" prefHeight="518.0" prefWidth="224.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
               <panes>
@@ -25,7 +25,7 @@
                               <TabPane fx:id="filtersTabs" layoutX="9.6" layoutY="9.6" prefHeight="432.0" prefWidth="224.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="-10.0" AnchorPane.leftAnchor="-10.0" AnchorPane.rightAnchor="-10.0" AnchorPane.topAnchor="-10.0">
                                 <tabs>
                                   <Tab id="function" text="Function" />
-                                  <Tab  id="convolution" text="Convolution" />
+                                  <Tab id="convolution" text="Convolution" />
                                 </tabs>
                               </TabPane>
                            </children>
@@ -34,7 +34,7 @@
                 </TitledPane>
                 <TitledPane expanded="false" text="Curves">
                   <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                    <AnchorPane fx:id="curvesCanvasBox" minHeight="0.0" minWidth="0.0" prefHeight="442.0" prefWidth="308.0" />
                   </content>
                 </TitledPane>
                 <TitledPane expanded="false" text="Histogram">

@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.davidmiguel.photoeditor.view.ConvolutionFiltersController;
+import com.davidmiguel.photoeditor.view.CurvesCanvasController;
 import com.davidmiguel.photoeditor.view.EditorController;
 import com.davidmiguel.photoeditor.view.FunctionFiltersController;
 import com.davidmiguel.photoeditor.view.RootLayoutController;
@@ -52,6 +53,7 @@ public class MainApp extends Application {
 		configureEditor();
 		configureFunctionFilters();
 		configureConvolutionFilters();
+		configureCurvesCanvas();
 		this.primaryStage.show();
 	}
 
@@ -131,6 +133,26 @@ public class MainApp extends Application {
 			ConvolutionFiltersController convolutionFiltersController = loader
 					.getController();
 			convolutionFiltersController.setMainApp(this);
+		} catch (IOException e) {
+			logger.error(null, e);
+			System.exit(1);
+		}
+	}
+	
+	private void configureCurvesCanvas() {
+		try {
+			// Load function filters layout from fxml file
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(
+					MainApp.class.getResource("view/CurvesCanvas.fxml"));
+			AnchorPane curvesCanvas = (AnchorPane) loader.load();
+			// Set in editor layout
+			editorController.getCurvesCanvasBox().getChildren().add(curvesCanvas);
+
+			// Give the controller access to the main app
+			CurvesCanvasController curvesCanvasController = loader
+					.getController();
+			curvesCanvasController.setMainApp(this);
 		} catch (IOException e) {
 			logger.error(null, e);
 			System.exit(1);

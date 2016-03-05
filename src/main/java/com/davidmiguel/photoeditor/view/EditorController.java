@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TabPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 
 public class EditorController {
 	
@@ -20,6 +21,8 @@ public class EditorController {
 	private ImageView imageView;
 	@FXML
 	private TabPane filtersTabs;
+	@FXML
+	private AnchorPane curvesCanvasBox;
 
 	@FXML
 	private void initialize() {
@@ -36,5 +39,9 @@ public class EditorController {
 
 	public TabPane getFiltersTabs() {
 		return filtersTabs;
+	}
+
+	public AnchorPane getCurvesCanvasBox() {
+		return curvesCanvasBox;
 	}
 }

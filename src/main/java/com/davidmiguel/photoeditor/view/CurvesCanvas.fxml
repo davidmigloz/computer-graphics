@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="442.0" prefWidth="279.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.davidmiguel.photoeditor.view.CurvesCanvasController">
+   <children>
+      <Canvas fx:id="canvasLayout" height="256.0" layoutX="12.0" layoutY="14.0" width="256.0" />
+      <Canvas fx:id="canvasCurves" height="256.0" layoutX="12.0" layoutY="14.0" width="256.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Canvas>
+   </children>
+</AnchorPane>

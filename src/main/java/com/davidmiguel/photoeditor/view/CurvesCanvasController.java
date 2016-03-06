@@ -1,5 +1,10 @@
 package com.davidmiguel.photoeditor.view;
 
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.TreeMap;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -26,34 +31,99 @@ public class CurvesCanvasController {
 	private GraphicsContext gcLayout;
 	private GraphicsContext gcCurves;
 
+	private Map<Integer, Integer> points; // y = f(x)
+
 	@FXML
 	private void initialize() {
 		logger.info("initialize() called");
+		// Layout
 		gcCurves = canvasCurves.getGraphicsContext2D();
 		gcLayout = canvasLayout.getGraphicsContext2D();
 		drawLayout();
+		// Points
+		points = new TreeMap<>();
+		points.put(0, 0);
+		points.put(255, 255);
 		handlePoints();
 	}
 
-	private void drawLayout() {
-		gcLayout.setStroke(Color.BLACK);
-		gcLayout.setLineWidth(1);
-		gcLayout.strokeLine(0, 0, 255, 0);
-		gcLayout.strokeLine(255, 0, 255, 255);
-		gcLayout.strokeLine(255, 255, 0, 255);
-		gcLayout.strokeLine(0, 255, 0, 0);
-		gcLayout.strokeLine(0, 255, 255, 0);
+	@FXML
+	private void handleApply() {
+		if(this.mainApp.getImage() == null){
+			return;
+		}
+		// TODO
 	}
 
+	@FXML
+	private void handleReset() {
+		reset();
+	}
+
+	/**
+	 * Draw a square and a diagonal line (default function).
+	 */
+	private void drawLayout() {
+		gcLayout.setStroke(Color.GRAY);
+		gcLayout.setLineWidth(1);
+		gcLayout.strokeLine(0.5, 0.5, 255.5, 0.5);
+		gcLayout.strokeLine(255.5, 0.5, 255.5, 255.5);
+		gcLayout.strokeLine(255.5, 255.5, 0.5, 255.5);
+		gcLayout.strokeLine(0.5, 255.5, 0.5, 0.5);
+		gcLayout.strokeLine(0.5, 255.5, 255.5, 0.5);
+	}
+
+	/**
+	 * Add listener to user's cliks to draw the points and curves.
+	 */
 	private void handlePoints() {
 		canvasCurves.addEventHandler(MouseEvent.MOUSE_PRESSED,
 				new EventHandler<MouseEvent>() {
 					@Override
 					public void handle(MouseEvent e) {
-						gcCurves.setFill(Color.BLUE);
-						gcCurves.fillOval(e.getX(), e.getY(), 7, 7);
+						points.put((int) e.getX(), 255 - (int) e.getY());
+						drawCurves();
 					}
 				});
+	}
+
+	/**
+	 * Draw points and lines joining them.
+	 */
+	private void drawCurves() {
+		// Clear canvas
+		gcCurves.clearRect(0, 0, canvasCurves.getWidth(),
+				canvasCurves.getHeight());
+		// Draw lines
+		gcCurves.setStroke(Color.GREEN);
+		gcCurves.setLineWidth(2);
+		Iterator<Integer> it = points.keySet().iterator();
+		int p1, p2;
+		p1 = it.next();
+		while (it.hasNext()) {
+			p2 = it.next();
+			gcCurves.strokeLine(p1, 255 - points.get(p1), p2,
+					255 - points.get(p2));
+			p1 = p2;
+		}
+		// Draw points
+		gcCurves.setFill(Color.BLUE);
+		for (int p : points.keySet()) {
+			gcCurves.fillOval(p - 3, 255 - points.get(p) - 3, 7, 7);
+		}
+	}
+
+	/**
+	 * Reset points and canvas.
+	 */
+	private void reset() {
+		// Clear points
+		points.clear();
+		points.put(0, 0);
+		points.put(255, 255);
+		// Clear canvas
+		gcCurves.clearRect(0, 0, canvasCurves.getWidth(),
+				canvasCurves.getHeight());
 	}
 
 	public void setMainApp(MainApp mainApp) {

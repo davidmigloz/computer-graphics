@@ -1,6 +1,5 @@
 package com.davidmiguel.photoeditor.view;
 
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.TreeMap;
@@ -9,11 +8,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.davidmiguel.photoeditor.MainApp;
+import com.davidmiguel.photoeditor.filters.Filter;
+import com.davidmiguel.photoeditor.filters.function.CurvesFilter;
 
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 
@@ -52,7 +54,10 @@ public class CurvesCanvasController {
 		if(this.mainApp.getImage() == null){
 			return;
 		}
-		// TODO
+		Filter filter = new CurvesFilter(points);
+		Image result = filter.apply(this.mainApp.getImage());
+		this.mainApp.setImage(result);
+		reset();
 	}
 
 	@FXML

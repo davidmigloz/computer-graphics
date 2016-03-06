@@ -13,10 +13,10 @@ import javafx.scene.paint.Color;
  */
 public abstract class FunctionFilter implements Filter {
 
-	protected short[] lookupTable;
+	protected int[] lookupTable;
 
 	public FunctionFilter(double value) {
-		lookupTable = new short[BITS];
+		lookupTable = new int[BITS];
 		createLookupTable(value);
 	}
 

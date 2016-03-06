@@ -22,7 +22,7 @@ public class ContrastFilter extends FunctionFilter {
 	@Override
 	protected void createLookupTable(double value) {
 		for (int i = 0; i < BITS; i++) {
-			lookupTable[i] = (short) ((i - (BITS / 2)) * (value) + (BITS / 2));
+			lookupTable[i] = (int) ((i - (BITS / 2)) * (value) + (BITS / 2));
 			// Check value in [0, BITS)
 			if (lookupTable[i] >= BITS) {
 				lookupTable[i] = BITS - 1;

@@ -22,7 +22,7 @@ public class BrightnessFilter extends FunctionFilter {
 	@Override
 	protected void createLookupTable(double value) {
 		for (int i = 0; i < BITS; i++) {
-			lookupTable[i] = (short) (i + value);
+			lookupTable[i] = (int) (i + value);
 			// Check value in [0, BITS)
 			if (lookupTable[i] >= BITS) {
 				lookupTable[i] = BITS - 1;

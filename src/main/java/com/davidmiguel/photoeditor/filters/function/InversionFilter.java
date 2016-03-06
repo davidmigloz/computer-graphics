@@ -20,7 +20,7 @@ public class InversionFilter extends FunctionFilter {
 	@Override
 	protected void createLookupTable(double value) {
 		for (int i = 0; i < BITS; i++) {
-			lookupTable[i] = (short) (value - i);
+			lookupTable[i] = (int) (value - i);
 			// Check value in [0, BITS)
 			if (lookupTable[i] >= BITS) {
 				lookupTable[i] = BITS - 1;

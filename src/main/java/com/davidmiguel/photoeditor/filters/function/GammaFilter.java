@@ -22,7 +22,7 @@ public class GammaFilter extends FunctionFilter {
 	@Override
 	protected void createLookupTable(double value) {
 		for (int i = 0; i < BITS; i++) {
-			lookupTable[i] = (short) Math.pow(i, value);
+			lookupTable[i] = (int) Math.pow(i, value);
 			// Check value in [0, BITS)
 			if (lookupTable[i] >= BITS) {
 				lookupTable[i] = BITS - 1;

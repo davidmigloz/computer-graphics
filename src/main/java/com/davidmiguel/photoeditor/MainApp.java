@@ -9,6 +9,7 @@ import javax.imageio.ImageIO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.davidmiguel.photoeditor.image.Histogram;
 import com.davidmiguel.photoeditor.view.ConvolutionFiltersController;
 import com.davidmiguel.photoeditor.view.CurvesCanvasController;
 import com.davidmiguel.photoeditor.view.EditorController;
@@ -38,6 +39,7 @@ public class MainApp extends Application {
 
 	private File file;
 	private Image image;
+	private Histogram histogram;
 
 	public MainApp() {
 		super();
@@ -46,7 +48,6 @@ public class MainApp extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		logger.info("Program Begins");
-
 		this.primaryStage = primaryStage;
 		this.primaryStage.setTitle("PhotoEditor");
 		configureStage();
@@ -57,6 +58,9 @@ public class MainApp extends Application {
 		this.primaryStage.show();
 	}
 
+	/**
+	 * Inflate root layout.
+	 */
 	private void configureStage() {
 		try {
 			// Load root layout from fxml file
@@ -76,6 +80,9 @@ public class MainApp extends Application {
 		}
 	}
 
+	/**
+	 * Inflate editor layout.
+	 */
 	private void configureEditor() {
 		try {
 			// Load editor layout from fxml file
@@ -93,6 +100,9 @@ public class MainApp extends Application {
 		}
 	}
 
+	/**
+	 * Inflate function filters controls.
+	 */
 	private void configureFunctionFilters() {
 		try {
 			// Load function filters layout from fxml file
@@ -115,7 +125,10 @@ public class MainApp extends Application {
 			System.exit(1);
 		}
 	}
-	
+
+	/**
+	 * Inflate convolution filters controls.
+	 */
 	private void configureConvolutionFilters() {
 		try {
 			// Load function filters layout from fxml file
@@ -138,7 +151,10 @@ public class MainApp extends Application {
 			System.exit(1);
 		}
 	}
-	
+
+	/**
+	 * Inflate curves canvas.
+	 */
 	private void configureCurvesCanvas() {
 		try {
 			// Load function filters layout from fxml file
@@ -147,7 +163,8 @@ public class MainApp extends Application {
 					MainApp.class.getResource("view/CurvesCanvas.fxml"));
 			AnchorPane curvesCanvas = (AnchorPane) loader.load();
 			// Set in editor layout
-			editorController.getCurvesCanvasBox().getChildren().add(curvesCanvas);
+			editorController.getCurvesCanvasBox().getChildren()
+					.add(curvesCanvas);
 
 			// Give the controller access to the main app
 			CurvesCanvasController curvesCanvasController = loader
@@ -159,13 +176,14 @@ public class MainApp extends Application {
 		}
 	}
 
+	/**
+	 * Load image from file (jpg or png).
+	 */
 	public void loadImage(File file) {
 		try {
 			String imageURL = file.toURI().toURL().toString();
-			this.image = new Image(imageURL);
 			this.file = file;
-			editorController.updateImage(image);
-
+			setImage(new Image(imageURL));
 		} catch (MalformedURLException e) {
 			logger.error(null, e);
 			Alert alert = new Alert(AlertType.ERROR);
@@ -177,6 +195,9 @@ public class MainApp extends Application {
 		}
 	}
 
+	/**
+	 * Save image to a png file.
+	 */
 	public void saveImage(File file) {
 		try {
 			ImageIO.write(SwingFXUtils.fromFXImage(image, null), "png", file);
@@ -190,6 +211,7 @@ public class MainApp extends Application {
 			alert.showAndWait();
 		}
 	}
+
 	/* ********************************************************************* */
 	/* Getters / Setters */
 	/* ********************************************************************* */
@@ -204,7 +226,9 @@ public class MainApp extends Application {
 
 	public void setImage(Image image) {
 		this.image = image;
+		this.histogram = new Histogram(image);
 		this.editorController.updateImage(image);
+		this.editorController.drawHistogram(histogram);
 	}
 
 	public File getFile() {

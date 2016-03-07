@@ -51,7 +51,7 @@ public class CurvesCanvasController {
 
 	@FXML
 	private void handleApply() {
-		if(this.mainApp.getImage() == null){
+		if (this.mainApp.getImage() == null) {
 			return;
 		}
 		Filter filter = new CurvesFilter(points);

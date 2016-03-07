@@ -39,8 +39,8 @@ public abstract class FunctionFilter implements Filter {
 		// Apply transformation with the lookup table
 		int r, g, b, newR, newG, newB;
 		double a;
-		for (int y = 0; y < input.getHeight(); y++) {
-			for (int x = 0; x < input.getWidth(); x++) {
+		for (int y = 0; y < height; y++) {
+			for (int x = 0; x < width; x++) {
 				// Actual color
 				Color color = pixelReader.getColor(x, y);
 				// from [0,1) to [0,BITS)

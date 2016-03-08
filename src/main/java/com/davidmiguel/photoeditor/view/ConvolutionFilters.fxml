@@ -28,7 +28,7 @@
             <Label alignment="CENTER_RIGHT" contentDisplay="TOP" prefHeight="35.0" prefWidth="77.0" text="Blur:" />
             <Label alignment="CENTER_RIGHT" prefHeight="28.0" prefWidth="79.0" text="Gaussian:" GridPane.rowIndex="1" />
             <Label alignment="CENTER_RIGHT" prefHeight="34.0" prefWidth="79.0" text="Sharpen:" GridPane.rowIndex="2" />
-            <Label alignment="CENTER_RIGHT" prefHeight="39.0" prefWidth="72.0" text="Inversion:" GridPane.rowIndex="3" />
+            <Label alignment="CENTER_RIGHT" prefHeight="39.0" prefWidth="72.0" text="Edges:" GridPane.rowIndex="3" />
             <HBox alignment="CENTER" layoutX="74.0" layoutY="42.0" GridPane.columnIndex="1">
                <children>
                   <Button alignment="CENTER" contentDisplay="CENTER" maxHeight="25.0" maxWidth="33.0" minHeight="25.0" minWidth="33.0" mnemonicParsing="false" onAction="#handleBlurX1" prefHeight="25.0" prefWidth="33.0" text="+">

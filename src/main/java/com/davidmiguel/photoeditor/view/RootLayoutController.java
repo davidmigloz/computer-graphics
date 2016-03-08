@@ -6,10 +6,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.davidmiguel.photoeditor.MainApp;
+import com.davidmiguel.photoeditor.util.FileManager;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.image.Image;
 import javafx.stage.FileChooser;
 
 public class RootLayoutController {
@@ -41,10 +43,14 @@ public class RootLayoutController {
 		File file = fileChooser.showOpenDialog(mainApp.getPrimaryStage());
 		if (file != null) {
 			// Load image
-			mainApp.loadImage(file);
+			Image image = FileManager.loadImage(file);
+			if (image != null) {
+				mainApp.setFile(file);
+				mainApp.setImage(image);
+			}
 		}
 	}
-	
+
 	/**
 	 * Save image to original file.
 	 */
@@ -52,11 +58,11 @@ public class RootLayoutController {
 	private void handleSave() {
 		if (isOpenedImage()) {
 			File file = mainApp.getFile();
-            // Make sure it has the correct extension
-            if (!file.getPath().endsWith(".png")) {
-                file = new File(file.getPath() + ".png");
-            }
-            mainApp.saveImage(file);
+			// Make sure it has the correct extension
+			if (!file.getPath().endsWith(".png")) {
+				file = new File(file.getPath() + ".png");
+			}
+			FileManager.saveImage(file, mainApp.getImage());
 		}
 	}
 
@@ -73,11 +79,11 @@ public class RootLayoutController {
 							"*.png"));
 			File file = fileChooser.showSaveDialog(mainApp.getPrimaryStage());
 			if (file != null) {
-	            // Make sure it has the correct extension
-	            if (!file.getPath().endsWith(".png")) {
-	                file = new File(file.getPath() + ".png");
-	            }
-	            mainApp.saveImage(file);
+				// Make sure it has the correct extension
+				if (!file.getPath().endsWith(".png")) {
+					file = new File(file.getPath() + ".png");
+				}
+				FileManager.saveImage(file, mainApp.getImage());
 			}
 		}
 	}

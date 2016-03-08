@@ -2,9 +2,6 @@ package com.davidmiguel.photoeditor;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
-
-import javax.imageio.ImageIO;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,11 +14,8 @@ import com.davidmiguel.photoeditor.view.FunctionFiltersController;
 import com.davidmiguel.photoeditor.view.RootLayoutController;
 
 import javafx.application.Application;
-import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.Tab;
 import javafx.scene.image.Image;
@@ -44,6 +38,10 @@ public class MainApp extends Application {
 	public MainApp() {
 		super();
 	}
+
+	/* ********************************************************************* */
+	/* Views inflation */
+	/* ********************************************************************* */
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
@@ -176,42 +174,6 @@ public class MainApp extends Application {
 		}
 	}
 
-	/**
-	 * Load image from file (jpg or png).
-	 */
-	public void loadImage(File file) {
-		try {
-			String imageURL = file.toURI().toURL().toString();
-			this.file = file;
-			setImage(new Image(imageURL));
-		} catch (MalformedURLException e) {
-			logger.error(null, e);
-			Alert alert = new Alert(AlertType.ERROR);
-			alert.setTitle("Error");
-			alert.setHeaderText("Could not open the image");
-			alert.setContentText("Could not open the image from the file:\n"
-					+ file.getPath());
-			alert.showAndWait();
-		}
-	}
-
-	/**
-	 * Save image to a png file.
-	 */
-	public void saveImage(File file) {
-		try {
-			ImageIO.write(SwingFXUtils.fromFXImage(image, null), "png", file);
-		} catch (IOException e) {
-			logger.error(null, e);
-			Alert alert = new Alert(AlertType.ERROR);
-			alert.setTitle("Error");
-			alert.setHeaderText("Could not save the image");
-			alert.setContentText(
-					"Could not save the image to the file:\n" + file.getPath());
-			alert.showAndWait();
-		}
-	}
-
 	/* ********************************************************************* */
 	/* Getters / Setters */
 	/* ********************************************************************* */
@@ -233,6 +195,10 @@ public class MainApp extends Application {
 
 	public File getFile() {
 		return file;
+	}
+
+	public void setFile(File file) {
+		this.file = file;
 	}
 
 	/* ********************************************************************* */

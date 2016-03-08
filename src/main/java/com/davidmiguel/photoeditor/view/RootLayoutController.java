@@ -46,6 +46,7 @@ public class RootLayoutController {
 			Image image = FileManager.loadImage(file);
 			if (image != null) {
 				mainApp.setFile(file);
+				mainApp.setOriginal(image);
 				mainApp.setImage(image);
 			}
 		}
@@ -109,5 +110,27 @@ public class RootLayoutController {
 	@FXML
 	private void handleExit() {
 		System.exit(0);
+	}
+
+	/**
+	 * Undo last action on the image.
+	 */
+	@FXML
+	private void handleUndo() {
+		Image imagePrev = mainApp.getImagePrev();
+		if (imagePrev != null) {
+			mainApp.setImage(imagePrev);
+		}
+	}
+
+	/**
+	 * Reset to the original image.
+	 */
+	@FXML
+	private void handleReset() {
+		Image original = mainApp.getOriginal();
+		if (original != null) {
+			mainApp.setImage(original);
+		}
 	}
 }

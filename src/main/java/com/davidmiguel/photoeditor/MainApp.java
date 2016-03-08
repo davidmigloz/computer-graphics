@@ -32,7 +32,9 @@ public class MainApp extends Application {
 	private EditorController editorController;
 
 	private File file;
+	private Image original;
 	private Image image;
+	private Image imagePrev;
 	private Histogram histogram;
 
 	public MainApp() {
@@ -182,19 +184,32 @@ public class MainApp extends Application {
 		return primaryStage;
 	}
 
+	public File getFile() {
+		return file;
+	}
+
 	public Image getImage() {
 		return image;
 	}
 
 	public void setImage(Image image) {
+		this.imagePrev = this.image;
 		this.image = image;
 		this.histogram = new Histogram(image);
 		this.editorController.updateImage(image);
 		this.editorController.drawHistogram(histogram);
 	}
 
-	public File getFile() {
-		return file;
+	public Image getImagePrev() {
+		return imagePrev;
+	}
+
+	public void setOriginal(Image original) {
+		this.original = original;
+	}
+
+	public Image getOriginal() {
+		return original;
 	}
 
 	public void setFile(File file) {

@@ -64,6 +64,30 @@ public class CurvesCanvasController {
 	private void handleReset() {
 		reset();
 	}
+	
+	@FXML
+	private void handleBrightness() {
+		reset();
+		points.put(0, 20);
+		points.put(235, 255);
+		drawCurves();
+	}
+	
+	@FXML
+	private void handleContrast() {
+		reset();
+		points.put(50, 0);
+		points.put(205, 255);
+		drawCurves();
+	}
+	
+	@FXML
+	private void handleInversion() {
+		reset();
+		points.put(0, 255);
+		points.put(255, 0);
+		drawCurves();
+	}
 
 	/**
 	 * Draw a square and a diagonal line (default function).

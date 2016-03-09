@@ -18,3 +18,6 @@ Projects for Computer Graphics at Warsaw University of Technology.
   + Edges
   + Emboss
   + Personalized
+
+### Download
+> [PhotoEditor.v1.jar](https://github.com/davidmigloz/computer-graphics/releases/download/v1/photoeditor.v1.jar)

@@ -80,7 +80,7 @@
             </HBox>
             <HBox alignment="CENTER" layoutX="76.0" layoutY="102.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
                <children>
-                  <Button alignment="CENTER" contentDisplay="CENTER" maxHeight="25.0" maxWidth="60.0" minHeight="25.0" minWidth="60.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="60.0" text="Create" />
+                  <Button alignment="CENTER" contentDisplay="CENTER" maxHeight="25.0" maxWidth="60.0" minHeight="25.0" minWidth="60.0" mnemonicParsing="false" onAction="#handlePersonalizedFilter" prefHeight="25.0" prefWidth="60.0" text="Create" />
                </children>
             </HBox>
             <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="29.0" prefWidth="75.0" text="Emboss:" textAlignment="RIGHT" GridPane.rowIndex="4" />

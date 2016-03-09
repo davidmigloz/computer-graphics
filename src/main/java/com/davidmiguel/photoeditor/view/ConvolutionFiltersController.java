@@ -158,4 +158,12 @@ public class ConvolutionFiltersController {
 		Image result = filter.apply(this.mainApp.getImage());
 		this.mainApp.setImage(result);
 	}
+	
+	@FXML
+	private void handlePersonalizedFilter() {
+		if(this.mainApp.getImage() == null){
+			return;
+		}
+		this.mainApp.showPersonalizedFilterDialog();
+	}
 }

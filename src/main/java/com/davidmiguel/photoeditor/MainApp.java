@@ -11,6 +11,7 @@ import com.davidmiguel.photoeditor.view.ConvolutionFiltersController;
 import com.davidmiguel.photoeditor.view.CurvesCanvasController;
 import com.davidmiguel.photoeditor.view.EditorController;
 import com.davidmiguel.photoeditor.view.FunctionFiltersController;
+import com.davidmiguel.photoeditor.view.PersonalizedFilterDialogController;
 import com.davidmiguel.photoeditor.view.RootLayoutController;
 
 import javafx.application.Application;
@@ -21,6 +22,7 @@ import javafx.scene.control.Tab;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class MainApp extends Application {
@@ -176,6 +178,33 @@ public class MainApp extends Application {
 		}
 	}
 
+    public void showPersonalizedFilterDialog() {
+        try {
+        	// Load function filters layout from fxml file
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainApp.class.getResource("view/PersonalizedFilterDialog.fxml"));
+            AnchorPane page = (AnchorPane) loader.load();
+
+            // Create the dialog Stage.
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Personalized Filter");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(primaryStage);
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+
+            // Set the person into the controller.
+            PersonalizedFilterDialogController controller = loader.getController();
+            controller.setMainApp(this);
+            controller.setDialogStage(dialogStage);          
+
+            // Show the dialog and wait until the user closes it
+            dialogStage.showAndWait();
+        } catch (IOException e) {
+        	logger.error(null, e);
+        }
+    }
+    
 	/* ********************************************************************* */
 	/* Getters / Setters */
 	/* ********************************************************************* */

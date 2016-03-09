@@ -133,4 +133,16 @@ public class RootLayoutController {
 			mainApp.setImage(original);
 		}
 	}
+	
+	/**
+	 * Show author info.
+	 */
+    @FXML
+    private void handleAbout() {
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle("PhotoEditor");
+        alert.setHeaderText("About");
+        alert.setContentText("Author: David Miguel\nWebsite: http://davidmiguel.com/");
+        alert.showAndWait();
+    }
 }

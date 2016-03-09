@@ -47,7 +47,7 @@ public class EditorController {
 	public void setMainApp(MainApp mainApp) {
 		this.mainApp = mainApp;
 	}
-
+	
 	public void updateImage(Image image) {
 		imageView.setImage(this.mainApp.getImage());
 	}

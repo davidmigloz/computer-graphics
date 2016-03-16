@@ -19,5 +19,14 @@ Projects for Computer Graphics at Warsaw University of Technology.
   + Emboss
   + Personalized
 
+### Notes
+- Supported input image formats:
+  + BMP
+  + GIF
+  + JPEG
+  + PNG
+- Color depth: 
+  + True color: 24-bit per pixel (8-bit per channel)
+
 ### Download
 > [PhotoEditor.v1.jar](https://github.com/davidmigloz/computer-graphics/releases/download/v1/photoeditor.v1.jar)

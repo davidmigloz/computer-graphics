@@ -8,6 +8,7 @@ import com.davidmiguel.photoeditor.filters.function.BrightnessFilter;
 import com.davidmiguel.photoeditor.filters.function.ContrastFilter;
 import com.davidmiguel.photoeditor.filters.Filter;
 import com.davidmiguel.photoeditor.filters.function.GammaFilter;
+import com.davidmiguel.photoeditor.filters.function.Grayscale;
 import com.davidmiguel.photoeditor.filters.function.InversionFilter;
 
 import javafx.fxml.FXML;
@@ -154,6 +155,16 @@ public class FunctionFiltersController {
 			return;
 		}
 		Filter filter = new GammaFilter(0.8);
+		Image result = filter.apply(this.mainApp.getImage());
+		this.mainApp.setImage(result);
+	}
+	
+	@FXML
+	private void handleGrayscale() {
+		if (this.mainApp.getImage() == null) {
+			return;
+		}
+		Filter filter = new Grayscale();
 		Image result = filter.apply(this.mainApp.getImage());
 		this.mainApp.setImage(result);
 	}

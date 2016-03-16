@@ -36,10 +36,9 @@ public class RootLayoutController {
 	private void handleOpen() {
 		FileChooser fileChooser = new FileChooser();
 		fileChooser.setTitle("Open Image");
-		fileChooser.getExtensionFilters().addAll(
-				new FileChooser.ExtensionFilter("JPG files (*.jpg, *.jpeg)",
-						"*.jpg", "*.jpeg"),
-				new FileChooser.ExtensionFilter("PNG files (*.png)", "*.png"));
+		fileChooser.getExtensionFilters().add(
+				new FileChooser.ExtensionFilter("Image files (*.jpg, *.jpeg, *.png, *.gif, *.bmp)",
+						"*.jpg", "*.jpeg", "*.png", "*.gif", "*.bmp"));
 		File file = fileChooser.showOpenDialog(mainApp.getPrimaryStage());
 		if (file != null) {
 			// Load image

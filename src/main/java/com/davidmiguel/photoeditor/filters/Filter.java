@@ -5,7 +5,7 @@ import javafx.scene.image.Image;
 public interface Filter {
 	
 	/**
-	 * 
+	 * 8-bit per channel.
 	 */
 	static final short BITS = 256;
 

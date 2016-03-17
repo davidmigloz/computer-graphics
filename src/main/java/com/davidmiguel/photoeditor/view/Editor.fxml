@@ -36,6 +36,7 @@
                                       <tabs>
                                         <Tab id="function" text="Function" />
                                         <Tab id="convolution" text="Convolution" />
+                                          <Tab id="dithering" text="Dithering" />
                                       </tabs>
                                     </TabPane>
                                  </children>

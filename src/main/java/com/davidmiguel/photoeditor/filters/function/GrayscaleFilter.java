@@ -14,7 +14,7 @@ import javafx.scene.paint.Color;
  * L = 0.21 R + 0.72 G + 0.07 B
  * https://en.wikipedia.org/wiki/Grayscale#Colorimetric_.28luminance-preserving.29_conversion_to_grayscale 
  */
-public class Grayscale implements Filter {
+public class GrayscaleFilter implements Filter {
 
 	@Override
 	public Image apply(Image input) {

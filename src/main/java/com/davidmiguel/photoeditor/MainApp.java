@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import com.davidmiguel.photoeditor.image.Histogram;
 import com.davidmiguel.photoeditor.view.ConvolutionFiltersController;
 import com.davidmiguel.photoeditor.view.CurvesCanvasController;
+import com.davidmiguel.photoeditor.view.DitheringFiltersController;
 import com.davidmiguel.photoeditor.view.EditorController;
 import com.davidmiguel.photoeditor.view.FunctionFiltersController;
 import com.davidmiguel.photoeditor.view.PersonalizedFilterDialogController;
@@ -56,6 +57,7 @@ public class MainApp extends Application {
 		configureEditor();
 		configureFunctionFilters();
 		configureConvolutionFilters();
+		configureDitheringFilters();
 		configureCurvesCanvas();
 		this.primaryStage.show();
 	}
@@ -133,7 +135,7 @@ public class MainApp extends Application {
 	 */
 	private void configureConvolutionFilters() {
 		try {
-			// Load function filters layout from fxml file
+			// Load convolution filters layout from fxml file
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(
 					MainApp.class.getResource("view/ConvolutionFilters.fxml"));
@@ -148,6 +150,32 @@ public class MainApp extends Application {
 			ConvolutionFiltersController convolutionFiltersController = loader
 					.getController();
 			convolutionFiltersController.setMainApp(this);
+		} catch (IOException e) {
+			logger.error(null, e);
+			System.exit(1);
+		}
+	}
+
+	/**
+	 * Inflate dithering filters controls.
+	 */
+	private void configureDitheringFilters() {
+		try {
+			// Load dithering filters layout from fxml file
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(
+					MainApp.class.getResource("view/DitheringFilters.fxml"));
+			AnchorPane ditheringFilters = (AnchorPane) loader.load();
+			// Set in editor layout
+			for (Tab tab : editorController.getFiltersTabs().getTabs()) {
+				if (tab.getId().equals("dithering")) {
+					tab.setContent(ditheringFilters);
+				}
+			}
+			// Give the controller access to the main app
+			DitheringFiltersController ditheringFiltersController = loader
+					.getController();
+			ditheringFiltersController.setMainApp(this);
 		} catch (IOException e) {
 			logger.error(null, e);
 			System.exit(1);
@@ -178,33 +206,35 @@ public class MainApp extends Application {
 		}
 	}
 
-    public void showPersonalizedFilterDialog() {
-        try {
-        	// Load function filters layout from fxml file
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainApp.class.getResource("view/PersonalizedFilterDialog.fxml"));
-            AnchorPane page = (AnchorPane) loader.load();
+	public void showPersonalizedFilterDialog() {
+		try {
+			// Load function filters layout from fxml file
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(MainApp.class
+					.getResource("view/PersonalizedFilterDialog.fxml"));
+			AnchorPane page = (AnchorPane) loader.load();
 
-            // Create the dialog Stage.
-            Stage dialogStage = new Stage();
-            dialogStage.setTitle("Personalized Filter");
-            dialogStage.initModality(Modality.WINDOW_MODAL);
-            dialogStage.initOwner(primaryStage);
-            Scene scene = new Scene(page);
-            dialogStage.setScene(scene);
+			// Create the dialog Stage.
+			Stage dialogStage = new Stage();
+			dialogStage.setTitle("Personalized Filter");
+			dialogStage.initModality(Modality.WINDOW_MODAL);
+			dialogStage.initOwner(primaryStage);
+			Scene scene = new Scene(page);
+			dialogStage.setScene(scene);
 
-            // Set the person into the controller.
-            PersonalizedFilterDialogController controller = loader.getController();
-            controller.setMainApp(this);
-            controller.setDialogStage(dialogStage);          
+			// Set the person into the controller.
+			PersonalizedFilterDialogController controller = loader
+					.getController();
+			controller.setMainApp(this);
+			controller.setDialogStage(dialogStage);
 
-            // Show the dialog and wait until the user closes it
-            dialogStage.showAndWait();
-        } catch (IOException e) {
-        	logger.error(null, e);
-        }
-    }
-    
+			// Show the dialog and wait until the user closes it
+			dialogStage.showAndWait();
+		} catch (IOException e) {
+			logger.error(null, e);
+		}
+	}
+
 	/* ********************************************************************* */
 	/* Getters / Setters */
 	/* ********************************************************************* */

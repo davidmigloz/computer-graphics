@@ -10,8 +10,6 @@ import java.util.Set;
  * all the points in the cluster.
  */
 public class Cluster {
-	/** Date set of points */
-	DataSet ds;
 	/** Points belonging to the cluster */
 	private Set<Point> points;
 	/** Centroid point of the cluster */
@@ -30,8 +28,7 @@ public class Cluster {
 	 * @param centroid
 	 *            centroid point
 	 */
-	public Cluster(DataSet ds, Point centroid) {
-		this.ds = ds;
+	public Cluster(Point centroid) {
 		points = new HashSet<Point>();
 		this.centroid = centroid;
 		sameCentroid = false;

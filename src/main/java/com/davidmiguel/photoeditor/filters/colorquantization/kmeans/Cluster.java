@@ -73,6 +73,17 @@ public class Cluster {
 	}
 
 	/**
+	 * Check if a point belongs to the cluster.
+	 * 
+	 * @param p
+	 *            point
+	 * @return true/false
+	 */
+	public boolean contains(Point p) {
+		return this.points.contains(p);
+	}
+
+	/**
 	 * If the cluster is finnished for the k-means algorithm.
 	 * 
 	 * @return true if the cluster centroid doesn't change it two consecutive

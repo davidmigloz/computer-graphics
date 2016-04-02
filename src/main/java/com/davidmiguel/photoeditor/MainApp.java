@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.davidmiguel.photoeditor.image.Histogram;
+import com.davidmiguel.photoeditor.view.ColorQuantizationFiltersController;
 import com.davidmiguel.photoeditor.view.ConvolutionFiltersController;
 import com.davidmiguel.photoeditor.view.CurvesCanvasController;
 import com.davidmiguel.photoeditor.view.DitheringFiltersController;
@@ -58,6 +59,7 @@ public class MainApp extends Application {
 		configureFunctionFilters();
 		configureConvolutionFilters();
 		configureDitheringFilters();
+		configureColorQuantizationFilters();
 		configureCurvesCanvas();
 		this.primaryStage.show();
 	}
@@ -176,6 +178,32 @@ public class MainApp extends Application {
 			DitheringFiltersController ditheringFiltersController = loader
 					.getController();
 			ditheringFiltersController.setMainApp(this);
+		} catch (IOException e) {
+			logger.error(null, e);
+			System.exit(1);
+		}
+	}
+	
+	/**
+	 * Inflate color quantization filters controls.
+	 */
+	private void configureColorQuantizationFilters() {
+		try {
+			// Load color quantization filters layout from fxml file
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(
+					MainApp.class.getResource("view/ColorQuantizationFilters.fxml"));
+			AnchorPane colorQuantizationFilters = (AnchorPane) loader.load();
+			// Set in editor layout
+			for (Tab tab : editorController.getFiltersTabs().getTabs()) {
+				if (tab.getId().equals("colorquantization")) {
+					tab.setContent(colorQuantizationFilters);
+				}
+			}
+			// Give the controller access to the main app
+			ColorQuantizationFiltersController colorQuantizationFiltersController = loader
+					.getController();
+			colorQuantizationFiltersController.setMainApp(this);
 		} catch (IOException e) {
 			logger.error(null, e);
 			System.exit(1);

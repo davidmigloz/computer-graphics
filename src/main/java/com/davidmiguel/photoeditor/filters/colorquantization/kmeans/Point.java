@@ -1,5 +1,7 @@
 package com.davidmiguel.photoeditor.filters.colorquantization.kmeans;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Arrays;
 
 /**
@@ -87,20 +89,47 @@ public class Point {
 		return d;
 	}
 
-	/**
-	 * Determines if two points are the same.
-	 * 
-	 * @param other
-	 *            point to compare
-	 * @return true / false
-	 */
-	public boolean equals(Point other) {
+	@Override
+	public boolean equals(Object other) {
 		for (int i = 0; i < values.length; i++) {
-			if (values[i] != other.getValue(i)) {
+			if (round(values[i], 3) != round(((Point) other).getValue(i), 3)) {
 				return false;
 			}
 		}
 		return true;
+	}
+
+	@Override
+	public int hashCode() {
+		// Construct the 32bit integer representation of this color
+		int red = (int) Math.round(values[0] * 255.0);
+		int green = (int) Math.round(values[1] * 255.0);
+		int blue = (int) Math.round(values[2] * 255.0);
+		int alpha = 255;
+		int i = red;
+		i = i << 8;
+		i = i | green;
+		i = i << 8;
+		i = i | blue;
+		i = i << 8;
+		i = i | alpha;
+		return i;
+	}
+
+	/**
+	 * Rounds a decimal number to a specific number of decimal places using the
+	 * mode half down.
+	 * 
+	 * @param number
+	 *            number to round
+	 * @param nDecimals
+	 *            specified number of decimal places
+	 * @return rounded number
+	 */
+	private double round(double number, int nDecimals) {
+		BigDecimal bd = new BigDecimal(number);
+		bd = bd.setScale(nDecimals, RoundingMode.HALF_DOWN);
+		return bd.doubleValue();
 	}
 
 	@Override

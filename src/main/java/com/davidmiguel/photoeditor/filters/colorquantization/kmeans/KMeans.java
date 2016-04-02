@@ -3,6 +3,7 @@ package com.davidmiguel.photoeditor.filters.colorquantization.kmeans;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -63,40 +64,18 @@ public class KMeans {
 	}
 
 	/**
-	 * Choose centroids for the k clustes uniformly distributed between the min.
-	 * and max. value of each feature.
+	 * Choose centroids for the k clustes taken from the dataset.
 	 * 
 	 * @return k clusters each one with the centroid setted
 	 */
 	private List<Cluster> chooseCentroids() {
-		List<Cluster> centroids = new ArrayList<Cluster>();
+		Random r = new Random();
+		List<Cluster> centroids = new ArrayList<Cluster>(k);
+		List<Point> points = ds.getPoints();
 
-		double[] highest = new double[ds.nFeatures()];
-		double[] lowests = new double[ds.nFeatures()];
-
-		// Get the max. and min. value of each feature
-		for (int i = 0; i < ds.nFeatures(); i++) {
-			double min = Double.POSITIVE_INFINITY;
-			double max = Double.NEGATIVE_INFINITY;
-			for (Point p : ds.getPoints()) {
-				double feature = p.getValue(i);
-				min = min > feature ? feature : min;
-				max = max < feature ? feature : max;
-			}
-			highest[i] = max;
-			lowests[i] = min;
-		}
-
-		// Get k random centroids uniformly distributed between min. and max.
-		// values of each features
+		// Get k random centroids taken from the dataset
 		for (int i = 0; i < k; i++) {
-			double[] features = new double[ds.nFeatures()];
-
-			for (int f = 0; f < ds.nFeatures(); f++) {
-				double step = (highest[f] - lowests[f]) / (double) k;
-				features[f] = lowests[f] + step / 2.0 + i * step;
-			}
-			Point centroid = new Point(features);
+			Point centroid = points.get(r.nextInt(points.size()));
 			Cluster c = new Cluster(centroid);
 			centroids.add(c);
 		}

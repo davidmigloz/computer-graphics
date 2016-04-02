@@ -15,7 +15,7 @@
   <items>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="520.0" prefWidth="763.0">
          <children>
-            <ImageView fx:id="imageView" fitHeight="478.0" fitWidth="720.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="20.0" />
+            <ImageView fx:id="imageView" fitHeight="478.0" fitWidth="720.0" pickOnBounds="true" preserveRatio="true" smooth="false" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="20.0" />
          </children></AnchorPane>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="520.0" prefWidth="274.0">
          <children>
@@ -37,6 +37,7 @@
                                         <Tab id="function" text="Function" />
                                         <Tab id="convolution" text="Convolution" />
                                           <Tab id="dithering" text="Dithering" />
+                                          <Tab id="colorquantization" text="Color Quantization" />
                                       </tabs>
                                     </TabPane>
                                  </children>

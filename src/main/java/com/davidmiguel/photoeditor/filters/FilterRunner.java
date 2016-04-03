@@ -34,7 +34,7 @@ public class FilterRunner extends Service<Image> {
 		// Create dialog info running filter
 		dialog = new Dialog<>();
 		dialog.setTitle("Running filter...");
-		dialog.setHeaderText("The filter is being applying to the image...");
+		dialog.setHeaderText("The filter is being applied to the image...");
 		dialog.setWidth(600);
 		progressBar = new ProgressBar();
 		dialog.getDialogPane().setContent(progressBar);

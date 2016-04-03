@@ -11,7 +11,6 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
@@ -50,8 +49,8 @@ public class PersonalizedFilterDialogController {
 			}
 		}
 		Filter filter = new PersonalizedFilter(matrix);
-		Image result = filter.apply(this.mainApp.getImage());
-		this.mainApp.setImage(result);
+		// Apply filter
+		this.mainApp.getFR().setFilter(filter).start();
 
 		dialogStage.close();
 	}

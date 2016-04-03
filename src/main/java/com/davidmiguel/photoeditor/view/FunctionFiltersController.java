@@ -12,7 +12,6 @@ import com.davidmiguel.photoeditor.filters.function.GrayscaleFilter;
 import com.davidmiguel.photoeditor.filters.function.InversionFilter;
 
 import javafx.fxml.FXML;
-import javafx.scene.image.Image;
 
 public class FunctionFiltersController {
 
@@ -35,8 +34,8 @@ public class FunctionFiltersController {
 			return;
 		}
 		Filter filter = new BrightnessFilter(10);
-		Image result = filter.apply(this.mainApp.getImage());
-		this.mainApp.setImage(result);
+		// Apply filter
+		this.mainApp.getFR().setFilter(filter).start();
 	}
 
 	@FXML
@@ -45,8 +44,8 @@ public class FunctionFiltersController {
 			return;
 		}
 		Filter filter = new BrightnessFilter(-10);
-		Image result = filter.apply(this.mainApp.getImage());
-		this.mainApp.setImage(result);
+		// Apply filter
+		this.mainApp.getFR().setFilter(filter).start();
 	}
 
 	@FXML
@@ -55,8 +54,8 @@ public class FunctionFiltersController {
 			return;
 		}
 		Filter filter = new BrightnessFilter(30);
-		Image result = filter.apply(this.mainApp.getImage());
-		this.mainApp.setImage(result);
+		// Apply filter
+		this.mainApp.getFR().setFilter(filter).start();
 	}
 
 	@FXML
@@ -65,8 +64,8 @@ public class FunctionFiltersController {
 			return;
 		}
 		Filter filter = new BrightnessFilter(-30);
-		Image result = filter.apply(this.mainApp.getImage());
-		this.mainApp.setImage(result);
+		// Apply filter
+		this.mainApp.getFR().setFilter(filter).start();
 	}
 
 	@FXML
@@ -75,8 +74,8 @@ public class FunctionFiltersController {
 			return;
 		}
 		Filter filter = new ContrastFilter(1.1);
-		Image result = filter.apply(this.mainApp.getImage());
-		this.mainApp.setImage(result);
+		// Apply filter
+		this.mainApp.getFR().setFilter(filter).start();
 	}
 
 	@FXML
@@ -85,8 +84,8 @@ public class FunctionFiltersController {
 			return;
 		}
 		Filter filter = new ContrastFilter(0.9);
-		Image result = filter.apply(this.mainApp.getImage());
-		this.mainApp.setImage(result);
+		// Apply filter
+		this.mainApp.getFR().setFilter(filter).start();
 	}
 
 	@FXML
@@ -95,8 +94,8 @@ public class FunctionFiltersController {
 			return;
 		}
 		Filter filter = new ContrastFilter(2);
-		Image result = filter.apply(this.mainApp.getImage());
-		this.mainApp.setImage(result);
+		// Apply filter
+		this.mainApp.getFR().setFilter(filter).start();
 	}
 
 	@FXML
@@ -105,8 +104,8 @@ public class FunctionFiltersController {
 			return;
 		}
 		Filter filter = new ContrastFilter(0.5);
-		Image result = filter.apply(this.mainApp.getImage());
-		this.mainApp.setImage(result);
+		// Apply filter
+		this.mainApp.getFR().setFilter(filter).start();
 	}
 
 	@FXML
@@ -115,8 +114,8 @@ public class FunctionFiltersController {
 			return;
 		}
 		Filter filter = new InversionFilter();
-		Image result = filter.apply(this.mainApp.getImage());
-		this.mainApp.setImage(result);
+		// Apply filter
+		this.mainApp.getFR().setFilter(filter).start();
 	}
 
 	@FXML
@@ -125,8 +124,8 @@ public class FunctionFiltersController {
 			return;
 		}
 		Filter filter = new GammaFilter(1.03);
-		Image result = filter.apply(this.mainApp.getImage());
-		this.mainApp.setImage(result);
+		// Apply filter
+		this.mainApp.getFR().setFilter(filter).start();
 	}
 
 	@FXML
@@ -135,8 +134,8 @@ public class FunctionFiltersController {
 			return;
 		}
 		Filter filter = new GammaFilter(0.97);
-		Image result = filter.apply(this.mainApp.getImage());
-		this.mainApp.setImage(result);
+		// Apply filter
+		this.mainApp.getFR().setFilter(filter).start();
 	}
 
 	@FXML
@@ -145,8 +144,8 @@ public class FunctionFiltersController {
 			return;
 		}
 		Filter filter = new GammaFilter(1.2);
-		Image result = filter.apply(this.mainApp.getImage());
-		this.mainApp.setImage(result);
+		// Apply filter
+		this.mainApp.getFR().setFilter(filter).start();
 	}
 
 	@FXML
@@ -155,8 +154,8 @@ public class FunctionFiltersController {
 			return;
 		}
 		Filter filter = new GammaFilter(0.8);
-		Image result = filter.apply(this.mainApp.getImage());
-		this.mainApp.setImage(result);
+		// Apply filter
+		this.mainApp.getFR().setFilter(filter).start();
 	}
 	
 	@FXML
@@ -165,7 +164,7 @@ public class FunctionFiltersController {
 			return;
 		}
 		Filter filter = new GrayscaleFilter();
-		Image result = filter.apply(this.mainApp.getImage());
-		this.mainApp.setImage(result);
+		// Apply filter
+		this.mainApp.getFR().setFilter(filter).start();
 	}
 }

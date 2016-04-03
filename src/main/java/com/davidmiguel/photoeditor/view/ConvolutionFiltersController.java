@@ -12,7 +12,6 @@ import com.davidmiguel.photoeditor.filters.convolution.GaussianFilter;
 import com.davidmiguel.photoeditor.filters.convolution.SharpenFilter;
 
 import javafx.fxml.FXML;
-import javafx.scene.image.Image;
 
 public class ConvolutionFiltersController {
 
@@ -35,8 +34,8 @@ public class ConvolutionFiltersController {
 			return;
 		}
 		Filter filter = new BlurFilter(3);
-		Image result = filter.apply(this.mainApp.getImage());
-		this.mainApp.setImage(result);
+		// Apply filter
+		this.mainApp.getFR().setFilter(filter).start();
 	}
 	
 	@FXML
@@ -45,8 +44,8 @@ public class ConvolutionFiltersController {
 			return;
 		}
 		Filter filter = new BlurFilter(5);
-		Image result = filter.apply(this.mainApp.getImage());
-		this.mainApp.setImage(result);
+		// Apply filter
+		this.mainApp.getFR().setFilter(filter).start();
 	}
 	
 	@FXML
@@ -55,8 +54,8 @@ public class ConvolutionFiltersController {
 			return;
 		}
 		Filter filter = new GaussianFilter(3);
-		Image result = filter.apply(this.mainApp.getImage());
-		this.mainApp.setImage(result);
+		// Apply filter
+		this.mainApp.getFR().setFilter(filter).start();
 	}
 	
 	@FXML
@@ -65,8 +64,8 @@ public class ConvolutionFiltersController {
 			return;
 		}
 		Filter filter = new GaussianFilter(5);
-		Image result = filter.apply(this.mainApp.getImage());
-		this.mainApp.setImage(result);
+		// Apply filter
+		this.mainApp.getFR().setFilter(filter).start();
 	}
 	
 	@FXML
@@ -75,8 +74,8 @@ public class ConvolutionFiltersController {
 			return;
 		}
 		Filter filter = new SharpenFilter(3);
-		Image result = filter.apply(this.mainApp.getImage());
-		this.mainApp.setImage(result);
+		// Apply filter
+		this.mainApp.getFR().setFilter(filter).start();
 	}
 	
 	@FXML
@@ -85,8 +84,8 @@ public class ConvolutionFiltersController {
 			return;
 		}
 		Filter filter = new SharpenFilter(5);
-		Image result = filter.apply(this.mainApp.getImage());
-		this.mainApp.setImage(result);
+		// Apply filter
+		this.mainApp.getFR().setFilter(filter).start();
 	}
 	
 	@FXML
@@ -95,8 +94,8 @@ public class ConvolutionFiltersController {
 			return;
 		}
 		Filter filter = new EdgeFilter('V');
-		Image result = filter.apply(this.mainApp.getImage());
-		this.mainApp.setImage(result);
+		// Apply filter
+		this.mainApp.getFR().setFilter(filter).start();
 	}
 	
 	@FXML
@@ -105,8 +104,8 @@ public class ConvolutionFiltersController {
 			return;
 		}
 		Filter filter = new EdgeFilter('H');
-		Image result = filter.apply(this.mainApp.getImage());
-		this.mainApp.setImage(result);
+		// Apply filter
+		this.mainApp.getFR().setFilter(filter).start();
 	}
 	
 	@FXML
@@ -115,8 +114,8 @@ public class ConvolutionFiltersController {
 			return;
 		}
 		Filter filter = new EdgeFilter('D');
-		Image result = filter.apply(this.mainApp.getImage());
-		this.mainApp.setImage(result);
+		// Apply filter
+		this.mainApp.getFR().setFilter(filter).start();
 	}
 	
 	@FXML
@@ -125,8 +124,8 @@ public class ConvolutionFiltersController {
 			return;
 		}
 		Filter filter = new EmbossFilter('N');
-		Image result = filter.apply(this.mainApp.getImage());
-		this.mainApp.setImage(result);
+		// Apply filter
+		this.mainApp.getFR().setFilter(filter).start();
 	}
 	
 	@FXML
@@ -135,8 +134,8 @@ public class ConvolutionFiltersController {
 			return;
 		}
 		Filter filter = new EmbossFilter('E');
-		Image result = filter.apply(this.mainApp.getImage());
-		this.mainApp.setImage(result);
+		// Apply filter
+		this.mainApp.getFR().setFilter(filter).start();
 	}
 	
 	@FXML
@@ -145,8 +144,8 @@ public class ConvolutionFiltersController {
 			return;
 		}
 		Filter filter = new EmbossFilter('S');
-		Image result = filter.apply(this.mainApp.getImage());
-		this.mainApp.setImage(result);
+		// Apply filter
+		this.mainApp.getFR().setFilter(filter).start();
 	}
 	
 	@FXML
@@ -155,8 +154,8 @@ public class ConvolutionFiltersController {
 			return;
 		}
 		Filter filter = new EmbossFilter('W');
-		Image result = filter.apply(this.mainApp.getImage());
-		this.mainApp.setImage(result);
+		// Apply filter
+		this.mainApp.getFR().setFilter(filter).start();
 	}
 	
 	@FXML

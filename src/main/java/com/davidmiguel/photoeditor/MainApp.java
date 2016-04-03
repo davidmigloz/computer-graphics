@@ -6,6 +6,7 @@ import java.io.IOException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.davidmiguel.photoeditor.filters.FilterRunner;
 import com.davidmiguel.photoeditor.image.Histogram;
 import com.davidmiguel.photoeditor.view.ColorQuantizationFiltersController;
 import com.davidmiguel.photoeditor.view.ConvolutionFiltersController;
@@ -40,6 +41,7 @@ public class MainApp extends Application {
 	private Image image;
 	private Image imagePrev;
 	private Histogram histogram;
+	private FilterRunner fr;
 
 	public MainApp() {
 		super();
@@ -56,6 +58,7 @@ public class MainApp extends Application {
 		this.primaryStage.setTitle("PhotoEditor");
 		configureStage();
 		configureEditor();
+		configureFilterRunner();
 		configureFunctionFilters();
 		configureConvolutionFilters();
 		configureDitheringFilters();
@@ -104,6 +107,13 @@ public class MainApp extends Application {
 			logger.error(null, e);
 			System.exit(1);
 		}
+	}
+
+	/**
+	 * Inflate function filters controls.
+	 */
+	private void configureFilterRunner() {
+		fr = new FilterRunner(this);
 	}
 
 	/**
@@ -183,7 +193,7 @@ public class MainApp extends Application {
 			System.exit(1);
 		}
 	}
-	
+
 	/**
 	 * Inflate color quantization filters controls.
 	 */
@@ -191,8 +201,8 @@ public class MainApp extends Application {
 		try {
 			// Load color quantization filters layout from fxml file
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(
-					MainApp.class.getResource("view/ColorQuantizationFilters.fxml"));
+			loader.setLocation(MainApp.class
+					.getResource("view/ColorQuantizationFilters.fxml"));
 			AnchorPane colorQuantizationFilters = (AnchorPane) loader.load();
 			// Set in editor layout
 			for (Tab tab : editorController.getFiltersTabs().getTabs()) {
@@ -301,6 +311,10 @@ public class MainApp extends Application {
 
 	public void setFile(File file) {
 		this.file = file;
+	}
+
+	public FilterRunner getFR() {
+		return fr;
 	}
 
 	/* ********************************************************************* */

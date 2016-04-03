@@ -4,9 +4,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import javafx.scene.image.Image;
 import javafx.scene.image.PixelReader;
 import javafx.scene.paint.Color;
@@ -15,7 +12,6 @@ import javafx.scene.paint.Color;
  * Calculate the histogram of an image.
  */
 public class Histogram {
-	private final Logger logger = LoggerFactory.getLogger(getClass().getName());
 
 	private static final short BITS = 256;
 
@@ -49,13 +45,11 @@ public class Histogram {
 		int maxG = Collections.max(g);
 		int maxB = Collections.max(b);
 		int max = Math.max(Math.max(maxR, maxG), maxB);
-		//logger.debug("Max: {}", max);
 		// Scale vaues: maxnumber -> 100%
 		for (int i = 0; i < BITS; i++) {
 			r.set(i, (int) ((r.get(i) / (double) max) * 100));
 			g.set(i, (int) ((g.get(i) / (double) max) * 100));
 			b.set(i, (int) ((b.get(i) / (double) max) * 100));
-			//logger.debug("({},{},{})", r.get(i), g.get(i), b.get(i));
 		}
 	}
 

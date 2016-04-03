@@ -10,7 +10,6 @@ import com.davidmiguel.photoeditor.filters.colorquantization.kmeans.KmeansColorQ
 import javafx.fxml.FXML;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 
 public class ColorQuantizationFiltersController {
 
@@ -45,7 +44,6 @@ public class ColorQuantizationFiltersController {
 			filter = new KmeansColorQuantizationFilter(k);
 		}
 		// Apply filter
-		Image result = filter.apply(this.mainApp.getImage());
-		this.mainApp.setImage(result);
+		this.mainApp.getFR().setFilter(filter).start();
 	}
 }

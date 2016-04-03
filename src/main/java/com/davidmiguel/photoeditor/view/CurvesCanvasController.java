@@ -15,7 +15,6 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 
@@ -55,8 +54,8 @@ public class CurvesCanvasController {
 			return;
 		}
 		Filter filter = new CurvesFilter(points);
-		Image result = filter.apply(this.mainApp.getImage());
-		this.mainApp.setImage(result);
+		// Apply filter
+		this.mainApp.getFR().setFilter(filter).start();
 		reset();
 	}
 

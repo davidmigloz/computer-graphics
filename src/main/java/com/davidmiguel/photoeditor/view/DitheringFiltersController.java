@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 
 import com.davidmiguel.photoeditor.MainApp;
 import com.davidmiguel.photoeditor.filters.Filter;
+import com.davidmiguel.photoeditor.filters.dithering.AverageDitheringFilter;
 import com.davidmiguel.photoeditor.filters.dithering.RandomDitheringFilter;
 
 import javafx.fxml.FXML;
@@ -44,6 +45,9 @@ public class DitheringFiltersController {
 		Filter filter = null;
 		if (randomRadio.isSelected()) {
 			filter = new RandomDitheringFilter(k);
+		} else if (averageRadio.isSelected()) {
+			kInput.setText("2");
+			filter = new AverageDitheringFilter(2);
 		}
 		// Apply filter
 		this.mainApp.getFR().setFilter(filter).start();

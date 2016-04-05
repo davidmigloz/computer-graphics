@@ -8,9 +8,10 @@ Projects for Computer Graphics at Warsaw University of Technology.
 - Functional filters:
   + Inversion
   + Brightness
-  + Contrast 
+  + Contrast
   + Gamma
   + Curves
+  + Grayscale `new`
 - Matrix filters:
   + Blur
   + Gaussian blur
@@ -18,6 +19,11 @@ Projects for Computer Graphics at Warsaw University of Technology.
   + Edges
   + Emboss
   + Personalized
+- Dithering
+  + Random `new`
+  + Average `new`
+- Color Quantization
+  + K-means `new`
 
 ### Notes
 - Supported input image formats:
@@ -25,7 +31,7 @@ Projects for Computer Graphics at Warsaw University of Technology.
   + GIF
   + JPEG
   + PNG
-- Color depth: 
+- Color depth:
   + True color: 24-bit per pixel (8-bit per channel)
 
 ### Download

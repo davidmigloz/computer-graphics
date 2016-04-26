@@ -1,9 +1,12 @@
 package com.davidmiguel.photoeditor.view;
 
+import java.awt.geom.Point2D;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.davidmiguel.photoeditor.MainApp;
+import com.davidmiguel.photoeditor.drawing.MidpointCircleAlgorithm;
 import com.davidmiguel.photoeditor.drawing.SymmetricMidpointLineAlgorithm;
 
 import javafx.beans.value.ChangeListener;
@@ -122,7 +125,8 @@ public class DrawingController {
 	}
 
 	private void drawCircle() {
-		
+		MidpointCircleAlgorithm.drawCircle(gc, fromX, fromY,
+				(int) Point2D.distance(fromX, fromY, toX, toY));
 	}
 
 	public void setMainApp(MainApp mainApp) {

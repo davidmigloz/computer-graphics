@@ -12,6 +12,7 @@ import com.davidmiguel.photoeditor.view.ColorQuantizationFiltersController;
 import com.davidmiguel.photoeditor.view.ConvolutionFiltersController;
 import com.davidmiguel.photoeditor.view.CurvesCanvasController;
 import com.davidmiguel.photoeditor.view.DitheringFiltersController;
+import com.davidmiguel.photoeditor.view.DrawingController;
 import com.davidmiguel.photoeditor.view.EditorController;
 import com.davidmiguel.photoeditor.view.FunctionFiltersController;
 import com.davidmiguel.photoeditor.view.PersonalizedFilterDialogController;
@@ -20,6 +21,7 @@ import com.davidmiguel.photoeditor.view.RootLayoutController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.canvas.Canvas;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.Tab;
 import javafx.scene.image.Image;
@@ -60,10 +62,11 @@ public class MainApp extends Application {
 		configureEditor();
 		configureFilterRunner();
 		configureFunctionFilters();
+		configureCurvesCanvas();
 		configureConvolutionFilters();
 		configureDitheringFilters();
 		configureColorQuantizationFilters();
-		configureCurvesCanvas();
+		configureDrawingCanvas();
 		this.primaryStage.show();
 	}
 
@@ -143,6 +146,30 @@ public class MainApp extends Application {
 	}
 
 	/**
+	 * Inflate curves canvas.
+	 */
+	private void configureCurvesCanvas() {
+		try {
+			// Load function filters layout from fxml file
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(
+					MainApp.class.getResource("view/CurvesCanvas.fxml"));
+			AnchorPane curvesCanvas = (AnchorPane) loader.load();
+			// Set in editor layout
+			editorController.getCurvesCanvasBox().getChildren()
+					.add(curvesCanvas);
+
+			// Give the controller access to the main app
+			CurvesCanvasController curvesCanvasController = loader
+					.getController();
+			curvesCanvasController.setMainApp(this);
+		} catch (IOException e) {
+			logger.error(null, e);
+			System.exit(1);
+		}
+	}
+
+	/**
 	 * Inflate convolution filters controls.
 	 */
 	private void configureConvolutionFilters() {
@@ -165,6 +192,35 @@ public class MainApp extends Application {
 		} catch (IOException e) {
 			logger.error(null, e);
 			System.exit(1);
+		}
+	}
+
+	public void showPersonalizedFilterDialog() {
+		try {
+			// Load function filters layout from fxml file
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(MainApp.class
+					.getResource("view/PersonalizedFilterDialog.fxml"));
+			AnchorPane page = (AnchorPane) loader.load();
+
+			// Create the dialog Stage.
+			Stage dialogStage = new Stage();
+			dialogStage.setTitle("Personalized Filter");
+			dialogStage.initModality(Modality.WINDOW_MODAL);
+			dialogStage.initOwner(primaryStage);
+			Scene scene = new Scene(page);
+			dialogStage.setScene(scene);
+
+			// Set the person into the controller.
+			PersonalizedFilterDialogController controller = loader
+					.getController();
+			controller.setMainApp(this);
+			controller.setDialogStage(dialogStage);
+
+			// Show the dialog and wait until the user closes it
+			dialogStage.showAndWait();
+		} catch (IOException e) {
+			logger.error(null, e);
 		}
 	}
 
@@ -221,55 +277,23 @@ public class MainApp extends Application {
 	}
 
 	/**
-	 * Inflate curves canvas.
+	 * Inflate drawing canvas.
 	 */
-	private void configureCurvesCanvas() {
+	private void configureDrawingCanvas() {
 		try {
 			// Load function filters layout from fxml file
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(
-					MainApp.class.getResource("view/CurvesCanvas.fxml"));
-			AnchorPane curvesCanvas = (AnchorPane) loader.load();
+			loader.setLocation(MainApp.class.getResource("view/Drawing.fxml"));
+			AnchorPane drawing = (AnchorPane) loader.load();
 			// Set in editor layout
-			editorController.getCurvesCanvasBox().getChildren()
-					.add(curvesCanvas);
+			editorController.getDrawingBox().getChildren().add(drawing);
 
 			// Give the controller access to the main app
-			CurvesCanvasController curvesCanvasController = loader
-					.getController();
-			curvesCanvasController.setMainApp(this);
+			DrawingController drawingController = loader.getController();
+			drawingController.setMainApp(this);
 		} catch (IOException e) {
 			logger.error(null, e);
 			System.exit(1);
-		}
-	}
-
-	public void showPersonalizedFilterDialog() {
-		try {
-			// Load function filters layout from fxml file
-			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(MainApp.class
-					.getResource("view/PersonalizedFilterDialog.fxml"));
-			AnchorPane page = (AnchorPane) loader.load();
-
-			// Create the dialog Stage.
-			Stage dialogStage = new Stage();
-			dialogStage.setTitle("Personalized Filter");
-			dialogStage.initModality(Modality.WINDOW_MODAL);
-			dialogStage.initOwner(primaryStage);
-			Scene scene = new Scene(page);
-			dialogStage.setScene(scene);
-
-			// Set the person into the controller.
-			PersonalizedFilterDialogController controller = loader
-					.getController();
-			controller.setMainApp(this);
-			controller.setDialogStage(dialogStage);
-
-			// Show the dialog and wait until the user closes it
-			dialogStage.showAndWait();
-		} catch (IOException e) {
-			logger.error(null, e);
 		}
 	}
 
@@ -307,6 +331,10 @@ public class MainApp extends Application {
 
 	public Image getOriginal() {
 		return original;
+	}
+
+	public Canvas getDrawingCanvas() {
+		return this.editorController.getDrawingCanvas();
 	}
 
 	public void setFile(File file) {

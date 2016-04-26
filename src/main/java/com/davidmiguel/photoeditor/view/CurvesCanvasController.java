@@ -63,7 +63,7 @@ public class CurvesCanvasController {
 	private void handleReset() {
 		reset();
 	}
-	
+
 	@FXML
 	private void handleBrightness() {
 		reset();
@@ -71,7 +71,7 @@ public class CurvesCanvasController {
 		points.put(235, 255);
 		drawCurves();
 	}
-	
+
 	@FXML
 	private void handleContrast() {
 		reset();
@@ -79,7 +79,7 @@ public class CurvesCanvasController {
 		points.put(205, 255);
 		drawCurves();
 	}
-	
+
 	@FXML
 	private void handleInversion() {
 		reset();

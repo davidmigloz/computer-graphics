@@ -28,9 +28,13 @@ public class EditorController {
 	@FXML
 	private ImageView imageView;
 	@FXML
+	private Canvas drawingCanvas;
+	@FXML
 	private TabPane filtersTabs;
 	@FXML
 	private AnchorPane curvesCanvasBox;
+	@FXML
+	private AnchorPane drawingBox;
 	@FXML
 	private Canvas histogramCanvas;
 
@@ -47,9 +51,13 @@ public class EditorController {
 	public void setMainApp(MainApp mainApp) {
 		this.mainApp = mainApp;
 	}
-	
+
 	public void updateImage(Image image) {
 		imageView.setImage(this.mainApp.getImage());
+	}
+
+	public Canvas getDrawingCanvas() {
+		return drawingCanvas;
 	}
 
 	public TabPane getFiltersTabs() {
@@ -58,6 +66,10 @@ public class EditorController {
 
 	public AnchorPane getCurvesCanvasBox() {
 		return curvesCanvasBox;
+	}
+	
+	public AnchorPane getDrawingBox() {
+		return drawingBox;
 	}
 
 	public void drawHistogram(Histogram h) {

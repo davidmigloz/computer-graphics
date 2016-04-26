@@ -16,6 +16,7 @@
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="520.0" prefWidth="763.0">
          <children>
             <ImageView fx:id="imageView" fitHeight="478.0" fitWidth="720.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="20.0" />
+            <Canvas fx:id="drawingCanvas" height="478.0" layoutX="20.0" layoutY="20.0" width="720.0" />
          </children></AnchorPane>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="520.0" prefWidth="274.0">
          <children>
@@ -49,6 +50,11 @@
                           <AnchorPane fx:id="curvesCanvasBox" minHeight="0.0" minWidth="0.0" prefHeight="442.0" prefWidth="308.0" />
                         </content>
                       </TitledPane>
+                        <TitledPane expanded="false" layoutX="10.0" layoutY="35.0" text="Drawing">
+                           <content>
+                              <AnchorPane fx:id="drawingBox" minHeight="0.0" minWidth="0.0" prefHeight="442.0" prefWidth="308.0" />
+                           </content>
+                        </TitledPane>
                      </panes>
                   </Accordion>
                </children>

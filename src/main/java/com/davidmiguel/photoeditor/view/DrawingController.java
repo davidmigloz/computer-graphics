@@ -4,45 +4,125 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.davidmiguel.photoeditor.MainApp;
+import com.davidmiguel.photoeditor.drawing.SymmetricMidpointLineAlgorithm;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.ColorPicker;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextField;
+import javafx.scene.control.Toggle;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.paint.Color;
 
 public class DrawingController {
 
 	private final Logger logger = LoggerFactory.getLogger(getClass().getName());
 
+	@FXML
+	private RadioButton lineRadio;
+	@FXML
+	private RadioButton circleRadio;
+	@FXML
+	private RadioButton noAARadio;
+	@FXML
+	private RadioButton AARadio;
+	@FXML
+	private TextField widthInput;
+	@FXML
+	private ColorPicker colorPicker;
+
 	private MainApp mainApp;
 	private Canvas canvas;
 	private GraphicsContext gc;
+	private int fromX;
+	private int fromY;
+	private int toX;
+	private int toY;
 
 	@FXML
 	private void initialize() {
 		logger.info("initialize() called");
 	}
-	
+
 	private void configureCanvas() {
 		canvas = mainApp.getDrawingCanvas();
 		gc = canvas.getGraphicsContext2D();
-		handleDrawing();
+		handleMouse();
+		handleRadios();
 	}
 
 	/**
 	 * Add listener to user's cliks.
 	 */
-	private void handleDrawing() {
+	private void handleMouse() {
+		// Get coordenates when mouse pressed
 		canvas.addEventHandler(MouseEvent.MOUSE_PRESSED,
 				new EventHandler<MouseEvent>() {
 					@Override
 					public void handle(MouseEvent e) {
-						gc.setFill(Color.BLUE);
-						gc.fillOval((int) e.getX(), (int) e.getY(), 7, 7);
+						fromX = (int) e.getX();
+						fromY = (int) e.getY();
 					}
 				});
+		// Get coordenates when released and draw
+		canvas.addEventHandler(MouseEvent.MOUSE_RELEASED,
+				new EventHandler<MouseEvent>() {
+					@Override
+					public void handle(MouseEvent e) {
+						toX = (int) e.getX();
+						toY = (int) e.getY();
+						handleDraw();
+					}
+				});
+	}
+	
+	private void handleRadios() {
+		lineRadio.getToggleGroup().selectedToggleProperty()
+		.addListener(new ChangeListener<Toggle>() {
+			@Override
+			public void changed(
+					ObservableValue<? extends Toggle> observable,
+					Toggle oldValue, Toggle newValue) {
+				if (circleRadio.isSelected()) {
+					noAARadio.setDisable(true);
+					AARadio.setDisable(true);
+				} else if (lineRadio.isSelected()) {
+					noAARadio.setDisable(false);
+					AARadio.setDisable(false);
+				}										
+			}
+		});
+	}
+
+	private void handleDraw() {
+		// Get color
+		gc.setStroke(colorPicker.getValue());
+		// Get width
+		gc.setLineWidth(Integer.parseInt(widthInput.getText()));
+		// Get shape
+		if (lineRadio.isSelected()) {
+			if (noAARadio.isSelected()) {
+				// Line with Symmetric Midpoint Line Algorithm
+				drawLine();
+			} else if (AARadio.isSelected()) {
+				// Line with Goupta-Sproull’s algorithm
+			}
+		} else if (circleRadio.isSelected()) {
+			// Circle with Midpoint Circle Algorithm
+			drawCircle();
+		}
+	}
+
+	private void drawLine() {
+		SymmetricMidpointLineAlgorithm.drawLine(gc, fromX, fromY, toX, toY);
+	}
+
+	private void drawCircle() {
+		
 	}
 
 	public void setMainApp(MainApp mainApp) {

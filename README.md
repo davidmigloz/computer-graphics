@@ -20,10 +20,14 @@ Projects for Computer Graphics at Warsaw University of Technology.
   + Emboss
   + Personalized
 - Dithering
-  + Random `new`
-  + Average `new`
+  + Random 
+  + Average 
 - Color Quantization
-  + K-means `new`
+  + K-means 
+- Drawing
+  + Lines (Symmetric Midpoint Line Algorithm) `new`
+  + Anti-aliasing lines (Gupta-Sproull's algorithm) `new`
+  + Circles (Midpoint Circle Algorithm) `new`
 
 ### Notes
 - Supported input image formats:
@@ -35,4 +39,4 @@ Projects for Computer Graphics at Warsaw University of Technology.
   + True color: 24-bit per pixel (8-bit per channel)
 
 ### Download
-> [PhotoEditor.v2.jar](https://github.com/davidmigloz/computer-graphics/releases/download/v2/PhotoEditor.v2.jar)
+> [PhotoEditor.v3.jar](https://github.com/davidmigloz/computer-graphics/releases/download/v3/PhotoEditor.v3.jar)

@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.davidmiguel.photoeditor.MainApp;
+import com.davidmiguel.photoeditor.drawing.GuptaSproullsAlgorithm;
 import com.davidmiguel.photoeditor.drawing.MidpointCircleAlgorithm;
 import com.davidmiguel.photoeditor.drawing.SymmetricMidpointLineAlgorithm;
 
@@ -82,25 +83,31 @@ public class DrawingController {
 					}
 				});
 	}
-	
+
+	/**
+	 * Manages the radio buttons.
+	 */
 	private void handleRadios() {
 		lineRadio.getToggleGroup().selectedToggleProperty()
-		.addListener(new ChangeListener<Toggle>() {
-			@Override
-			public void changed(
-					ObservableValue<? extends Toggle> observable,
-					Toggle oldValue, Toggle newValue) {
-				if (circleRadio.isSelected()) {
-					noAARadio.setDisable(true);
-					AARadio.setDisable(true);
-				} else if (lineRadio.isSelected()) {
-					noAARadio.setDisable(false);
-					AARadio.setDisable(false);
-				}										
-			}
-		});
+				.addListener(new ChangeListener<Toggle>() {
+					@Override
+					public void changed(
+							ObservableValue<? extends Toggle> observable,
+							Toggle oldValue, Toggle newValue) {
+						if (circleRadio.isSelected()) {
+							noAARadio.setDisable(true);
+							AARadio.setDisable(true);
+						} else if (lineRadio.isSelected()) {
+							noAARadio.setDisable(false);
+							AARadio.setDisable(false);
+						}
+					}
+				});
 	}
 
+	/**
+	 * Draw the selected shape with the selected algoritm.
+	 */
 	private void handleDraw() {
 		// Get color
 		gc.setStroke(colorPicker.getValue());
@@ -109,21 +116,33 @@ public class DrawingController {
 		// Get shape
 		if (lineRadio.isSelected()) {
 			if (noAARadio.isSelected()) {
-				// Line with Symmetric Midpoint Line Algorithm
 				drawLine();
 			} else if (AARadio.isSelected()) {
-				// Line with Goupta-Sproull’s algorithm
+				drawLineAA();
 			}
 		} else if (circleRadio.isSelected()) {
-			// Circle with Midpoint Circle Algorithm
 			drawCircle();
 		}
 	}
 
+	/**
+	 * Line with Symmetric Midpoint Line Algorithm.
+	 */
 	private void drawLine() {
 		SymmetricMidpointLineAlgorithm.drawLine(gc, fromX, fromY, toX, toY);
 	}
 
+	/**
+	 * Line with Goupta-Sproull’s algorithm.
+	 */
+	private void drawLineAA() {
+		GuptaSproullsAlgorithm.drawLine(gc, fromX, fromY, toX, toY,
+				colorPicker.getValue());
+	}
+
+	/**
+	 * Circle with Midpoint Circle Algorithm.
+	 */
 	private void drawCircle() {
 		MidpointCircleAlgorithm.drawCircle(gc, fromX, fromY,
 				(int) Point2D.distance(fromX, fromY, toX, toY));

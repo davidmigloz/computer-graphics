@@ -3,8 +3,9 @@ package com.davidmiguel.photoeditor.drawing;
 import javafx.scene.canvas.GraphicsContext;
 
 /**
+ * Drawing circles with Midpoint Circle Algorithm.
  * https://en.wikipedia.org/wiki/Midpoint_circle_algorithm
- * 
+ * http://www.tutorialspoint.com/computer_graphics/circle_generation_algorithm.htm
  */
 public class MidpointCircleAlgorithm {
 

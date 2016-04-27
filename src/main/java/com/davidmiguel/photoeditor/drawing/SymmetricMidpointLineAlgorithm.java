@@ -3,6 +3,7 @@ package com.davidmiguel.photoeditor.drawing;
 import javafx.scene.canvas.GraphicsContext;
 
 /**
+ * Drawing lines with Symmetric Midpoint Line Algorithm.
  * Based on Bresenham's line algorithm from
  * https://rosettacode.org/wiki/Bitmap/Bresenham's_line_algorithm#Java
  */

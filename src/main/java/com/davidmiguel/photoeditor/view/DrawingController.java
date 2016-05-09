@@ -8,7 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.davidmiguel.photoeditor.MainApp;
-//import com.davidmiguel.photoeditor.drawing.FillingAlgorithm;
+import com.davidmiguel.photoeditor.drawing.FillingAlgorithm;
 import com.davidmiguel.photoeditor.drawing.GuptaSproullsAlgorithm;
 import com.davidmiguel.photoeditor.drawing.MidpointCircleAlgorithm;
 import com.davidmiguel.photoeditor.drawing.SymmetricMidpointLineAlgorithm;
@@ -48,6 +48,8 @@ public class DrawingController {
 	private RadioButton f4cRadio;
 	@FXML
 	private RadioButton f8cRadio;
+	@FXML
+	private ColorPicker boundaryPicker;
 
 	private MainApp mainApp;
 	private Canvas canvas;
@@ -64,6 +66,8 @@ public class DrawingController {
 	@FXML
 	private void initialize() {
 		logger.info("initialize() called");
+		colorPicker.setValue(Color.BLACK);
+		boundaryPicker.setValue(Color.BLACK);
 	}
 
 	private void configureCanvas() {
@@ -114,7 +118,7 @@ public class DrawingController {
 					double[] coordX = new double[bufferX.size()];
 					double[] coordY = new double[bufferY.size()];
 					int size = bufferX.size();
-					for(int i = 0; i < size; i++) {
+					for (int i = 0; i < size; i++) {
 						coordX[i] = bufferX.pollFirst();
 						coordY[i] = bufferY.pollFirst();
 					}
@@ -141,6 +145,7 @@ public class DrawingController {
 			AARadio.setDisable(false);
 			f4cRadio.setDisable(true);
 			f8cRadio.setDisable(true);
+			boundaryPicker.setDisable(true);
 		} else if (circleRadio.isSelected()) {
 			selectedOpt = Option.CIRCLE;
 			widthInput.setDisable(false);
@@ -148,6 +153,7 @@ public class DrawingController {
 			AARadio.setDisable(true);
 			f4cRadio.setDisable(true);
 			f8cRadio.setDisable(true);
+			boundaryPicker.setDisable(true);
 		} else if (polygonRadio.isSelected()) {
 			selectedOpt = Option.POLYGON;
 			widthInput.setDisable(true);
@@ -155,6 +161,7 @@ public class DrawingController {
 			AARadio.setDisable(true);
 			f4cRadio.setDisable(true);
 			f8cRadio.setDisable(true);
+			boundaryPicker.setDisable(true);
 		} else if (fillingRadio.isSelected()) {
 			selectedOpt = Option.FILLING;
 			widthInput.setDisable(true);
@@ -162,6 +169,7 @@ public class DrawingController {
 			AARadio.setDisable(true);
 			f4cRadio.setDisable(false);
 			f8cRadio.setDisable(false);
+			boundaryPicker.setDisable(false);
 		}
 	}
 
@@ -188,16 +196,14 @@ public class DrawingController {
 	}
 
 	/**
-	 * 
-	 * @param mainApp
+	 * Boundary Fill Algorithms.
 	 */
 	private void filling(int x, int y) {
 		WritableImage canvas = gc.getCanvas().snapshot(new SnapshotParameters(), null);
 		if (f4cRadio.isSelected()) {
-			//FillingAlgorithm.floodFill4(gc, canvas, x, y, colorPicker.getValue(), Color.BLACK);
+			FillingAlgorithm.floodFill4(gc, canvas, x, y, colorPicker.getValue(), boundaryPicker.getValue());
 		} else if (f8cRadio.isSelected()) {
-			System.out.println("asdfasdfasdfa");
-			//FillingAlgorithm.floodFill8(gc, canvas, x, y, colorPicker.getValue(), Color.BLACK);
+			FillingAlgorithm.floodFill8(gc, canvas, x, y, colorPicker.getValue(), boundaryPicker.getValue());
 		}
 	}
 

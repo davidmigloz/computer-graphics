@@ -1,13 +1,14 @@
 package com.davidmiguel.photoeditor.drawing;
 
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
 
 public class DrawingUtils {
-	static void putPixel(GraphicsContext gc, int x, int y) {
-		// Center pixels
-		// http://stackoverflow.com/questions/27846659/how-to-draw-an-1-pixel-line-using-javafx-canvas
-		x += 0.5;
-		y += 0.5;
-		gc.strokeLine(x, y, x, y);
+	static void putPixel(GraphicsContext gc, int x, int y, Color c, int width) {
+		for(int i = x; i < x + width; i++) {
+			for(int j = y; j < y + width; j++) {
+				gc.getPixelWriter().setColor(i, j, c);
+			}
+		}		
 	}
 }

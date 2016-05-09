@@ -15,7 +15,12 @@ import javafx.scene.paint.Color;
 public class GuptaSproullsAlgorithm {
 
 	public static void drawLine(GraphicsContext gc, int x1, int y1, int x2,
-			int y2, Color color) {
+			int y2, Color color, int width) {
+		// If it is just a point
+		if(x1 == x2 && y1 == y2) {
+			DrawingUtils.putPixel(gc, x1, y1, color, width);
+			return;
+		}
 
 		int dx = x2 - x1;
 		int dy = y2 - y1;
@@ -100,7 +105,6 @@ public class GuptaSproullsAlgorithm {
 		// Normalized inverse of distance squared
 		double alpha = 1 - Math.pow((distance * 2 / 3), 2);
 		Color color = new Color(c.getRed(), c.getGreen(), c.getBlue(), alpha);
-		gc.setStroke(color);
-		DrawingUtils.putPixel(gc, x, y);
+		DrawingUtils.putPixel(gc, x, y, color, 1);
 	}
 }

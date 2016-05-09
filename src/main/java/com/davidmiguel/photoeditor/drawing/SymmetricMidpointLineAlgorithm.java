@@ -1,6 +1,7 @@
 package com.davidmiguel.photoeditor.drawing;
 
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
 
 /**
  * Drawing lines with Symmetric Midpoint Line Algorithm.
@@ -9,7 +10,12 @@ import javafx.scene.canvas.GraphicsContext;
  */
 public class SymmetricMidpointLineAlgorithm {
 	public static void drawLine(GraphicsContext gc, int x1, int y1, int x2,
-			int y2) {
+			int y2, Color color, int width) {
+		// If it is just a point
+		if(x1 == x2 && y1 == y2) {
+			DrawingUtils.putPixel(gc, x1, y1, color, width);
+			return;
+		}
 		int d = 0;
 		int dx = Math.abs(x2 - x1);
 		int dy = Math.abs(y2 - y1);
@@ -33,8 +39,8 @@ public class SymmetricMidpointLineAlgorithm {
 				ix *= -1; iy *= -1;
 			}
 			do {
-				DrawingUtils.putPixel(gc, xf, yf);
-				DrawingUtils.putPixel(gc, xl, yl);
+				DrawingUtils.putPixel(gc, xf, yf, color, width);
+				DrawingUtils.putPixel(gc, xl, yl, color, width);
 				xf += ix;
 				xl -= ix;
 				d += dy2;
@@ -52,8 +58,8 @@ public class SymmetricMidpointLineAlgorithm {
 				ix *= -1; iy *= -1;
 			}
 			do {
-				DrawingUtils.putPixel(gc, xf, yf);
-				DrawingUtils.putPixel(gc, xl, yl);
+				DrawingUtils.putPixel(gc, xf, yf, color, width);
+				DrawingUtils.putPixel(gc, xl, yl, color, width);
 				yf += iy;
 				yl -= iy;
 				d += dx2;

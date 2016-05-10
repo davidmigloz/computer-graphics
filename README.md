@@ -19,12 +19,12 @@ Projects for Computer Graphics at Warsaw University of Technology.
   + Edges
   + Emboss
   + Personalized
-- Dithering
+- Dithering:
   + Random 
   + Average 
-- Color Quantization
+- Color Quantization:
   + K-means 
-- Drawing
+- Drawing:
   + Lines (Symmetric Midpoint Line Algorithm)
   + Anti-aliasing lines (Gupta-Sproull's algorithm) 
   + Circles (Midpoint Circle Algorithm) 

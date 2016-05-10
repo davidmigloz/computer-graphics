@@ -25,9 +25,11 @@ Projects for Computer Graphics at Warsaw University of Technology.
 - Color Quantization
   + K-means 
 - Drawing
-  + Lines (Symmetric Midpoint Line Algorithm) `new`
-  + Anti-aliasing lines (Gupta-Sproull's algorithm) `new`
-  + Circles (Midpoint Circle Algorithm) `new`
+  + Lines (Symmetric Midpoint Line Algorithm)
+  + Anti-aliasing lines (Gupta-Sproull's algorithm) 
+  + Circles (Midpoint Circle Algorithm) 
+  + Fill polygons (Scanline Algorithm) `new`
+  + Fill regions (Boundary Fill algorithm: 4-way/8-way) `new`
 
 ### Notes
 - Supported input image formats:
@@ -39,4 +41,4 @@ Projects for Computer Graphics at Warsaw University of Technology.
   + True color: 24-bit per pixel (8-bit per channel)
 
 ### Download
-> [PhotoEditor.v3.jar](https://github.com/davidmigloz/computer-graphics/releases/download/v3/PhotoEditor.v3.jar)
+> [PhotoEditor.v4.jar](https://github.com/davidmigloz/computer-graphics/releases/download/v4/PhotoEditor.v4.jar)

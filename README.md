@@ -11,7 +11,7 @@ Projects for Computer Graphics at Warsaw University of Technology.
   + Contrast
   + Gamma
   + Curves
-  + Grayscale `new`
+  + Grayscale
 - Matrix filters:
   + Blur
   + Gaussian blur

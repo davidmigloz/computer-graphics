@@ -11,6 +11,7 @@ import com.davidmiguel.photoeditor.MainApp;
 import com.davidmiguel.photoeditor.drawing.FillingAlgorithm;
 import com.davidmiguel.photoeditor.drawing.GuptaSproullsAlgorithm;
 import com.davidmiguel.photoeditor.drawing.MidpointCircleAlgorithm;
+import com.davidmiguel.photoeditor.drawing.ScanlineAlgorithm;
 import com.davidmiguel.photoeditor.drawing.SymmetricMidpointLineAlgorithm;
 
 import javafx.fxml.FXML;
@@ -80,6 +81,7 @@ public class DrawingController {
 	 * Add listener to user's cliks.
 	 */
 	private void handleMouse() {
+		// Click pressed
 		canvas.setOnMousePressed(event -> {
 			switch (selectedOpt) {
 			case LINE:
@@ -95,40 +97,38 @@ public class DrawingController {
 				break;
 			}
 		});
+		// Click released
 		canvas.setOnMouseReleased(event -> {
 			switch (selectedOpt) {
 			case LINE:
 				if (bufferX.size() == 1) {
+					// Draw line
 					drawLine(bufferX.removeLast().intValue(), bufferY.removeLast().intValue(), (int) event.getX(),
 							(int) event.getY());
 				}
 				break;
 			case CIRCLE:
 				if (bufferX.size() == 1) {
+					// Draw circle
 					drawCircle(bufferX.removeLast().intValue(), bufferY.removeLast().intValue(), (int) event.getX(),
 							(int) event.getY());
 				}
 				break;
 			case POLYGON:
 				if (event.getButton().equals(MouseButton.PRIMARY)) {
+					// Left click -> add vertice
 					bufferX.add(event.getX());
 					bufferY.add(event.getY());
-					gc.fillOval(event.getX(), event.getY(), 2, 2);
+					gc.getPixelWriter().setColor((int) event.getX(), (int) event.getY(), Color.GREEN);
 				} else if (event.getButton().equals(MouseButton.SECONDARY)) {
-					double[] coordX = new double[bufferX.size()];
-					double[] coordY = new double[bufferY.size()];
-					int size = bufferX.size();
-					for (int i = 0; i < size; i++) {
-						coordX[i] = bufferX.pollFirst();
-						coordY[i] = bufferY.pollFirst();
-					}
-					gc.strokePolygon(coordX, coordY, size);
+					// Right click -> fill polygon
+					fillPolygon();
 				}
 				break;
 			case FILLING:
-				filling((int) event.getX(), (int) event.getY());
+				// Fill region
+				fillRegion((int) event.getX(), (int) event.getY());
 				break;
-
 			}
 		});
 	}
@@ -196,9 +196,24 @@ public class DrawingController {
 	}
 
 	/**
+	 * Fill polygon with Scan-line Algorithm.
+	 */
+	private void fillPolygon() {
+		int[] coordX = new int[bufferX.size()];
+		int[] coordY = new int[bufferY.size()];
+		int size = bufferX.size();
+		for (int i = 0; i < size; i++) {
+			coordX[i] = bufferX.pollFirst().intValue();
+			coordY[i] = bufferY.pollFirst().intValue();
+		}
+		// Draw filled polygon
+		new ScanlineAlgorithm(coordX, coordY).fill(gc, colorPicker.getValue());
+	}
+
+	/**
 	 * Boundary Fill Algorithms.
 	 */
-	private void filling(int x, int y) {
+	private void fillRegion(int x, int y) {
 		WritableImage canvas = gc.getCanvas().snapshot(new SnapshotParameters(), null);
 		if (f4cRadio.isSelected()) {
 			FillingAlgorithm.floodFill4(gc, canvas, x, y, colorPicker.getValue(), boundaryPicker.getValue());

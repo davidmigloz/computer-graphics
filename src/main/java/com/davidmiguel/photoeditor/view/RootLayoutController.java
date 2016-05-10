@@ -36,9 +36,8 @@ public class RootLayoutController {
 	private void handleOpen() {
 		FileChooser fileChooser = new FileChooser();
 		fileChooser.setTitle("Open Image");
-		fileChooser.getExtensionFilters().add(
-				new FileChooser.ExtensionFilter("Image files (*.jpg, *.jpeg, *.png, *.gif, *.bmp)",
-						"*.jpg", "*.jpeg", "*.png", "*.gif", "*.bmp"));
+		fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter(
+				"Image files (*.jpg, *.jpeg, *.png, *.gif, *.bmp)", "*.jpg", "*.jpeg", "*.png", "*.gif", "*.bmp"));
 		File file = fileChooser.showOpenDialog(mainApp.getPrimaryStage());
 		if (file != null) {
 			// Load image
@@ -74,9 +73,7 @@ public class RootLayoutController {
 		if (isOpenedImage()) {
 			FileChooser fileChooser = new FileChooser();
 			fileChooser.setTitle("Save Image");
-			fileChooser.getExtensionFilters()
-					.add(new FileChooser.ExtensionFilter("PNG files (*.png)",
-							"*.png"));
+			fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PNG files (*.png)", "*.png"));
 			File file = fileChooser.showSaveDialog(mainApp.getPrimaryStage());
 			if (file != null) {
 				// Make sure it has the correct extension
@@ -127,21 +124,25 @@ public class RootLayoutController {
 	 */
 	@FXML
 	private void handleReset() {
+		// Reset image
 		Image original = mainApp.getOriginal();
 		if (original != null) {
 			mainApp.setImage(original);
 		}
+		// Reset canvas
+		mainApp.getDrawingCanvas().getGraphicsContext2D().clearRect(0, 0, mainApp.getDrawingCanvas().getWidth(),
+				mainApp.getDrawingCanvas().getHeight());
 	}
-	
+
 	/**
 	 * Show author info.
 	 */
-    @FXML
-    private void handleAbout() {
-        Alert alert = new Alert(AlertType.INFORMATION);
-        alert.setTitle("PhotoEditor");
-        alert.setHeaderText("About");
-        alert.setContentText("Author: David Miguel\nWebsite: http://davidmiguel.com/");
-        alert.showAndWait();
-    }
+	@FXML
+	private void handleAbout() {
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle("PhotoEditor");
+		alert.setHeaderText("About");
+		alert.setContentText("Author: David Miguel\nWebsite: http://davidmiguel.com/");
+		alert.showAndWait();
+	}
 }
